@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>sssd_app_group</key>
+	<string>wheel</string>
+	<key>sssd_app_owner</key>
+	<string>root</string>
+	<key>sssd_app_path</key>
+	<string>Lab1/Applications</string>
+	<key>sssd_app_perms</key>
+	<string>011</string>
+	<key>sssd_auto_restart</key>
+	<true/>
+	<key>sssd_bandwidth</key>
+	<integer>0</integer>
+	<key>sssd_encrypt_pass</key>
+	<false/>
+	<key>sssd_host</key>
+	<string>smb://10.0.0.100/stardeploy</string>
+	<key>sssd_keep_app_synced</key>
+	<false/>
+	<key>sssd_keep_lib_synced</key>
+	<false/>
+	<key>sssd_keep_user_synced</key>
+	<false/>
+	<key>sssd_lib_group</key>
+	<string>wheel</string>
+	<key>sssd_lib_owner</key>
+	<string>root</string>
+	<key>sssd_lib_perms</key>
+	<string>011</string>
+	<key>sssd_library_path</key>
+	<string>Lab1/Library</string>
+	<key>sssd_off</key>
+	<integer>0</integer>
+	<key>sssd_passwd</key>
+	<string></string>
+	<key>sssd_pkg_path</key>
+	<string>Lab1/Packages</string>
+	<key>sssd_set_app_perm</key>
+	<false/>
+	<key>sssd_set_lib_perm</key>
+	<false/>
+	<key>sssd_set_user_perm</key>
+	<false/>
+	<key>sssd_user_group</key>
+	<string>wheel</string>
+	<key>sssd_user_owner</key>
+	<string>root</string>
+	<key>sssd_user_path</key>
+	<string>Lab1/Users</string>
+	<key>sssd_user_perms</key>
+	<string>011</string>
+	<key>sssd_username</key>
+	<string></string>
+	<key>sssd_volume_hidden</key>
+	<true/>
+</dict>
+</plist>

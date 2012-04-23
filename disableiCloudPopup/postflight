@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# from github.com/natewalck/LuggagePackages
+# original version causes plist owner to be set to root
+# fixed by SM April 2012
+
+for user in $3/Users/*
+do
+	if [ "${user}" != "/Users/Shared" ]
+		then	
+			defaults write $3$user/Library/Preferences/com.apple.SetupAssistant DidSeeCloudSetup -bool TRUE
+			chown ${user} $3$user/Library/Preferences/com.apple.SetupAssistant.plist
+	fi
+done
