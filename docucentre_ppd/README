@@ -1,0 +1,3 @@
+This version installs the ppd only, for reference in InstaDMG firstboot script
+
+NOTE: Printer drivers need to be installed separately. See pkg made with Packages (to avoid having to wrangle spaces in printer driver names)

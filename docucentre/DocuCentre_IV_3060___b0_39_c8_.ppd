@@ -1,0 +1,637 @@
+*PPD-Adobe: "4.3"
+*%
+*%   Fuji Xerox Print Driver for Mac OS X
+*%
+*%   Copyright 2010 by Fuji Xerox Co.,Ltd.
+*%
+*FileVersion: "1.3"
+*FormatVersion: "4.3"
+*LanguageEncoding: ISOLatin1
+*LanguageVersion: English
+*Manufacturer: "FX"
+*PCFileName: "FXPDMX01.PPD"
+*Product: "(FX Print Driver for Mac OS X)"
+*PSVersion: "(3015.104) 1"
+*ShortNickName: "FX Print Driver for Mac OS X"
+*ModelName: "FX Print Driver for Mac OS X"
+*NickName: "FX Print Driver for Mac OS X v1.3"
+*cupsFilter: "application/pdf 0 /Library/Printers/FujiXerox/Filter/FXPSACMMFilter.bundle/Contents/MacOS/FXPSACMMFilter"
+*FXXPrintTypeSettings: "Default03-Type16"
+*FXXAccountingSettings: "Default02-Type06"
+*FXXFeaturesSettings: "Default01"
+*FXXLayoutSettings: "Default00-Type02"
+*APDialogExtension: "/Library/Printers/FujiXerox/PDEs/FXPSACMMAccount.plugin"
+*APDialogExtension: "/Library/Printers/FujiXerox/PDEs/FXPSACMMFeatures.plugin"
+*JobPatchFile 0: ""
+
+*% === Options and Constraints =========
+*OpenGroup: InstallableOptions/Options Installed
+*OpenUI *FXMinDigitPasscode/Minimum Passcode Length: PickOne
+*DefaultFXMinDigitPasscode: 0
+*FXMinDigitPasscode 0/0: ""
+*FXMinDigitPasscode 1/1: ""
+*FXMinDigitPasscode 2/2: ""
+*FXMinDigitPasscode 3/3: ""
+*FXMinDigitPasscode 4/4: ""
+*FXMinDigitPasscode 5/5: ""
+*FXMinDigitPasscode 6/6: ""
+*FXMinDigitPasscode 7/7: ""
+*FXMinDigitPasscode 8/8: ""
+*FXMinDigitPasscode 9/9: ""
+*FXMinDigitPasscode 10/10: ""
+*FXMinDigitPasscode 11/11: ""
+*FXMinDigitPasscode 12/12: ""
+*?FXMinDigitPasscode: "
+    save mark {
+        /nstr 2 string def
+        /Custom /ProcSet findresource /currentminpasswordlength get exec
+        dup dup 0 ge exch 12 le and {nstr cvs}{(Unknown)} ifelse = flush
+    } stopped {(Unknown) = flush} if
+    cleartomark restore
+"
+*End
+*CloseUI: *FXMinDigitPasscode
+
+*OpenUI *FXSelectID/Customize User Prompts: PickOne
+*DefaultFXSelectID: UserID_AccountID
+*FXSelectID UserID_AccountID/Display User ID and Account ID Prompts: ""
+*FXSelectID UserID/Display User ID Prompt Only: ""
+*FXSelectID AccountID/Display Account ID Prompt Only: ""
+*?FXSelectID: "
+    save
+    /Custom /ProcSet resourcestatus {
+        pop pop
+        /Custom /ProcSet findresource /currentuserprompts 2 copy known {
+            get exec
+            dup -1 le {(Unknown) exch} if
+            dup  0 eq {(UserID_AccountID) exch} if
+            dup  1 eq {(UserID) exch} if
+            dup  2 eq {(AccountID) exch} if
+            dup  3 ge {(Unknown) exch} if
+            pop
+        }{
+            pop pop (Unknown)
+        } ifelse
+    }{
+        (Unknown)
+    } ifelse
+    = flush
+    restore
+"
+*End
+*CloseUI: *FXSelectID
+*CloseGroup: InstallableOptions
+
+*% ==== UI Constraints ===============
+*UIConstraints: *PageSize FXPostcard *InputSlot 1stTray
+*UIConstraints: *PageSize FXPostcard *InputSlot 2ndTray
+*UIConstraints: *PageSize FXPostcard *InputSlot 3rdTray
+*UIConstraints: *PageSize FXPostcard *InputSlot 4thTray
+*UIConstraints: *InputSlot 1stTray *PageSize FXPostcard
+*UIConstraints: *InputSlot 2ndTray *PageSize FXPostcard
+*UIConstraints: *InputSlot 3rdTray *PageSize FXPostcard
+*UIConstraints: *InputSlot 4thTray *PageSize FXPostcard
+*UIConstraints: *PageSize FXPostcard *Duplex
+*UIConstraints: *Duplex *PageSize FXPostcard
+*UIConstraints: *PageSize A5 *FXStaple
+*UIConstraints: *PageSize FXPostcard *FXStaple
+*UIConstraints: *FXStaple *PageSize A5
+*UIConstraints: *FXStaple *PageSize FXPostcard
+*UIConstraints: *PageSize A5 *FXPunch
+*UIConstraints: *PageSize FXPostcard *FXPunch
+*UIConstraints: *FXPunch *PageSize A5
+*UIConstraints: *FXPunch *PageSize FXPostcard
+*NonUIConstraints: *CustomPageSize True *FXPunch
+*NonUIConstraints: *FXPunch *CustomPageSize True
+*UIConstraints: *PageSize FXPostcard *FXSignature
+*UIConstraints: *FXSignature *PageSize FXPostcard
+*NonUIConstraints: *CustomPageSize True *FXSignature
+*NonUIConstraints: *FXSignature *CustomPageSize True
+*UIConstraints: *FXPunch *FXSignature
+*UIConstraints: *FXSignature *FXPunch
+*UIConstraints: *FXSignature *FXIntBackCoverSheet
+*UIConstraints: *FXIntBackCoverSheet *FXSignature
+*UIConstraints: *FXSignature None *FXSigVol
+*UIConstraints: *FXSigVol *FXSignature None
+*UIConstraints: *FXSignature *FXIntCoverSheet
+*UIConstraints: *FXIntCoverSheet *FXSignature
+*UIConstraints: *FXSignature *Duplex
+*UIConstraints: *Duplex *FXSignature
+
+*% ==== Device Capabilities ===============
+*LanguageLevel: "3"
+*Protocols: TBCP
+*1284Modes Parallel: Compat Nibble ECP
+*%1284DeviceID: "MFG:FUJI XEROX;CMD:;MDL:FX Print Driver for Mac OS X;DES:FX Print Driver for Mac OS X;CLS:PRINTER;"
+
+*ColorDevice: True
+*DefaultColorSpace: CMYK
+*VariablePaperSize: True
+*LandscapeOrientation: Plus90
+*TTRasterizer: Type42
+*FileSystem: True
+*Throughput: "35"
+*DefaultResolution: 600dpi
+
+*OpenUI *Duplex/2 Sided Print:  PickOne
+*OrderDependency: 110.0 AnySetup *Duplex
+*DefaultDuplex: None
+*Duplex None/1 Sided Print: "<</TYPE(SET) /KEY(DUPLEX) /VALUE(OFF)>> pop"
+*Duplex DuplexNoTumble/Flip on long edge: " <</TYPE(SET) /KEY(DUPLEX) /VALUE(LONGEDGE)>> pop pop"
+*Duplex DuplexTumble/Flip on short edge: "<</TYPE(SET) /KEY(DUPLEX) /VALUE(SHORTEDGE)>> pop pop"
+*CloseUI: *Duplex
+
+*% Collate ===============
+*OpenUI *Collate/Collated: PickOne
+*OrderDependency: 15.0 AnySetup *Collate
+*DefaultCollate: False
+*Collate False/Off: "<</TYPE(SET) /KEY(COLLATE) /VALUE(OFF)>> pop"
+*Collate True/On: "<</TYPE(SET) /KEY(COLLATE) /VALUE(ON)>> pop"
+*CloseUI: *Collate
+
+*% Paper Handling ===================
+*RequiresPageRegion 1stTray: False
+*RequiresPageRegion 2ndTray: False
+*RequiresPageRegion 3rdTray: False
+*RequiresPageRegion 4thTray: False
+*RequiresPageRegion MediaTypeAPS: True
+
+*OpenUI *PageSize: PickOne
+*OrderDependency: 60.0 AnySetup *PageSize
+*DefaultPageSize: A4
+*PageSize A3/A3 (297 x 420mm): "<</PageSize[842 1191]/ImagingBBox null>>setpagedevice
+								<</TYPE(SET) /KEY(PAPER) /VALUE(A3)>> pop"
+*PageSize B4/B4 (257 x 364mm): "<</PageSize[729 1032]/ImagingBBox null>>setpagedevice
+								<</TYPE(SET) /KEY(PAPER) /VALUE(JISB4)>> pop"
+*PageSize A4/A4 (210 x 297mm): "<</PageSize[595 842]/ImagingBBox null>>setpagedevice
+								<</TYPE(SET) /KEY(PAPER) /VALUE(A4)>> pop"
+*PageSize B5/B5 (182 x 257mm): "<</PageSize[516 729]/ImagingBBox null>>setpagedevice
+								<</TYPE(SET) /KEY(PAPER) /VALUE(JISB5)>> pop"
+*PageSize A5/A5 (148 x 210mm): "<</PageSize[420 595]/ImagingBBox null>>setpagedevice
+								<</TYPE(SET) /KEY(PAPER) /VALUE(A5)>> pop"
+*PageSize Letter/Letter (8.5 x 11"): "<</PageSize[612 792]/ImagingBBox null>>setpagedevice
+								<</TYPE(SET) /KEY(PAPER) /VALUE(LETTER)>> pop"
+*PageSize Legal/Legal (8.5 x 14"): "<</PageSize[612 1008]/ImagingBBox null>>setpagedevice
+								<</TYPE(SET) /KEY(PAPER) /VALUE(LEGAL)>> pop"
+*PageSize Tabloid/Tabloid (11 x 17"): "<</PageSize[792 1224]/ImagingBBox null>>setpagedevice
+								<</TYPE(SET) /KEY(PAPER) /VALUE(LEDGER)>> pop"
+*PageSize FXPostcard/Postcard (100 x 148mm): "<</PageSize[283 420]/ImagingBBox null>>setpagedevice
+								<</TYPE(SET) /KEY(PAPER) /VALUE(FXPostcard)>> pop"
+*CloseUI: *PageSize
+
+*OpenUI *PageRegion:  PickOne
+*OrderDependency: 80.0 AnySetup *PageRegion
+*DefaultPageRegion: A4
+*PageRegion A3/A3 (297 x 420mm): "<</PageSize[842 1191]/ImagingBBox null>>setpagedevice"
+*PageRegion B4/B4 (257 x 364mm): "<</PageSize[729 1032]/ImagingBBox null>>setpagedevice"
+*PageRegion A4/A4 (210 x 297mm): "<</PageSize[595 842]/ImagingBBox null>>setpagedevice"
+*PageRegion B5/B5 (182 x 257mm): "<</PageSize[516 729]/ImagingBBox null>>setpagedevice"
+*PageRegion A5/A5 (148 x 210mm): "<</PageSize[420 595]/ImagingBBox null>>setpagedevice"
+*PageRegion Letter/Letter (8.5 x 11"): "<</PageSize[612 792]/ImagingBBox null>>setpagedevice"
+*PageRegion Legal/Legal (8.5 x 14"): "<</PageSize[612 1008]/ImagingBBox null>>setpagedevice"
+*PageRegion Tabloid/Tabloid (11 x 17"): "<</PageSize[792 1224]/ImagingBBox null>>setpagedevice"
+*PageRegion FXPostcard/Postcard (100 x 148mm): "<</PageSize[283 420]/ImagingBBox null>>setpagedevice"
+*CloseUI: *PageRegion
+
+*% The following entries provide information about specific paper keywords.
+*DefaultImageableArea: A4
+*ImageableArea A3/A3 (297 x 420mm): "11.62 11.62 830.38 1179.38 "
+*ImageableArea B4/B4 (257 x 364mm): "11.62 11.62 717.38 1020.38 "
+*ImageableArea A4/A4 (210 x 297mm): "11.62 11.62 583.38 830.38 "
+*ImageableArea B5/B5 (182 x 257mm): "11.62 11.62 504.38 717.38 "
+*ImageableArea A5/A5 (148 x 210mm): "11.62 11.62 408.38 583.38 "
+*ImageableArea Letter/Letter (8.5 x 11"): "11.62 11.62 600.38 780.38 "
+*ImageableArea Legal/Legal (8.5 x 14"): "11.62 11.62 600.38 996.38 "
+*ImageableArea Tabloid/Tabloid (11 x 17"): "11.62 11.62 780.38 1212.38 "
+*ImageableArea FXPostcard/Postcard (100 x 148mm): "11.62 11.62 271.84 407.91 "
+
+*% These provide the physical dimensions of the paper (by keyword)
+*DefaultPaperDimension: A4
+*PaperDimension A3/A3 (297 x 420mm): "842 1191"
+*PaperDimension B4/B4 (257 x 364mm): "729 1032"
+*PaperDimension A4/A4 (210 x 297mm): "595 842"
+*PaperDimension B5/B5 (182 x 257mm): "516 729"
+*PaperDimension A5/A5 (148 x 210mm): "420 595"
+*PaperDimension Letter/Letter (8.5 x 11"): "612 792"
+*PaperDimension Legal/Legal (8.5 x 14"): "612 1008"
+*PaperDimension Tabloid/Tabloid (11 x 17"): "792 1224"
+*PaperDimension FXPostcard/Postcard (100 x 148mm): "283 420"
+
+*% InputSlot Information ================
+*OpenUI *InputSlot/Paper Source: PickOne
+*OrderDependency: 50.0 AnySetup *InputSlot
+*DefaultInputSlot: 1stTray
+*InputSlot 1stTray/Tray 1: "<</TYPE(SET) /KEY(MEDIASOURCE) /VALUE(TRAY1)>> pop"
+*InputSlot 2ndTray/Tray 2: "<</TYPE(SET) /KEY(MEDIASOURCE) /VALUE(TRAY2)>> pop"
+*InputSlot 3rdTray/Tray 3: "<</TYPE(SET) /KEY(MEDIASOURCE) /VALUE(TRAY3)>> pop"
+*InputSlot 4thTray/Tray 4: "<</TYPE(SET) /KEY(MEDIASOURCE) /VALUE(TRAY4)>> pop"
+*InputSlot BypassTray/Bypass Tray: "<</TYPE(SET) /KEY(MEDIASOURCE) /VALUE(TRAY5)>> pop"
+*CloseUI: *InputSlot
+
+*% MediaType Information ===================
+*OpenUI *MediaType/Paper Type: PickOne
+*OrderDependency: 50.0 AnySetup *MediaType
+*DefaultMediaType: Default
+*MediaType Default/Printer Default Type: ""
+*MediaType Stationary/Plain: "<</TYPE(SET) /KEY(MEDIATYPE) /VALUE(STATIONARY)>> pop"
+*MediaType StationaryBack/Plain Reload: "<</TYPE(MEDIAKEY) /KEY(AUTOSELECT) /VALUE(STATIONARYBACK)>> pop"
+*MediaType RecyclePaper/Recycled: "<</TYPE(SET) /KEY(MEDIAKEY) /VALUE(RECYCLEPAPER)>> pop"
+*MediaType ThickPaper/Heavyweight: "<</TYPE(SET) /KEY(MEDIAKEY) /VALUE(THICKPAPER)>> pop"
+*CloseUI: *MediaType
+
+*% ColorMode Information ===================
+*OpenUI *FXColorMode/Output Color:PickOne
+*OrderDependency: 20.0 AnySetup *FXColorMode
+*DefaultFXColorMode: Color
+*FXColorMode Color/Color: "<</TYPE(SET) /KEY(RENDERMODE) /VALUE(AUTOCOLOR)>> pop"
+*FXColorMode Black/Black and White: "<</TYPE(SET) /KEY(RENDERMODE) /VALUE(GRAYSCALE)>> pop"
+*CloseUI: *FXColorMode
+
+*% OutputMode Information ===================
+*OpenUI *FXOutputMode/Image Quality:PickOne
+*OrderDependency: 10.0 AnySetup *FXOutputMode
+*DefaultFXOutputMode: Standard
+*FXOutputMode Standard/Standard: "<</TYPE(ATTR) /KEY(DIPQ) /VALUE(STANDARD)>> pop"
+*FXOutputMode HighSpeed/High Speed: "<</TYPE(ATTR) /KEY(DIPQ) /VALUE(HIGHSPEED)>> pop"
+*FXOutputMode HighQuality/High Quality: "<</TYPE(ATTR) /KEY(DIPQ) /VALUE(HIGHQUALITY)>> pop"
+*CloseUI: *FXOutputMode
+
+*% Staple ===============
+*OpenUI *FXStaple/Staple:  PickOne
+*OrderDependency: 160.0 AnySetup *FXStaple
+*DefaultFXStaple: None
+*FXStaple None/None: ""
+*FXStaple UpperLeftSinglePort/1 Staple, Top Left: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+										<</TYPE(SET) /KEY(STAPLE) /VALUE(TOPLEFT)>> pop pop"
+*FXStaple UpperRightSinglePort/1 Staple, Top Right: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(STAPLE) /VALUE(TOPRIGHT)>> pop pop"
+*FXStaple BottomRightSinglePort/1 Staple, Bottom Right: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(STAPLE) /VALUE(BOTTOMRIGHT)>> pop pop"
+*FXStaple BottomLeftSinglePort/1 Staple, Bottom Left: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+										<</TYPE(SET) /KEY(STAPLE) /VALUE(BOTTOMLEFT)>> pop pop"
+*FXStaple LeftDoublePort/2 Staples, Left: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(STAPLE) /VALUE(LEFTDUAL)>> pop pop"
+*FXStaple TopDoublePort/2 Staples, Top: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(STAPLE) /VALUE(TOPDUAL)>> pop pop"
+*FXStaple RightDoublePort/2 Staples, Right: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+										<</TYPE(SET) /KEY(STAPLE) /VALUE(RIGHTDUAL)>> pop pop"
+*FXStaple BottomDoublePort/2 Staples, Bottom:"<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(STAPLE) /VALUE(BOTTOMDUAL)>> pop pop"
+*CloseUI: *FXStaple
+
+*% Punch ===============
+*OpenUI *FXPunch/Hole Punch: PickOne
+*OrderDependency: 160.0 AnySetup *FXPunch
+*DefaultFXPunch: None
+*FXPunch None/None: ""
+*FXPunch Left/Left: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+										<</TYPE(SET) /KEY(PUNCH) /VALUE(LEFT)>> pop pop"
+*FXPunch Top/Top: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(PUNCH) /VALUE(TOP)>> pop pop"
+*FXPunch Right/Right: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(PUNCH) /VALUE(RIGHT)>> pop pop"
+*FXPunch Bottom/Bottom: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+										<</TYPE(SET) /KEY(PUNCH) /VALUE(BOTTOM)>> pop pop"
+*CloseUI: *FXPunch
+
+*% Hole Punch Settings ===============
+*OpenUI *FXNumPunchHoles/Hole Punch Settings: PickOne
+*OrderDependency: 176.0 AnySetup *FXNumPunchHoles
+*DefaultFXNumPunchHoles: 2Holes
+*FXNumPunchHoles 2Holes/2 Hole Punch: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+										<</TYPE(SET) /KEY(PUNCHHOLES) /VALUE(2HOLES)>> pop pop"
+*FXNumPunchHoles 3Holes/3 Hole Punch: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(PUNCHHOLES) /VALUE(3HOLES)>> pop pop"
+*FXNumPunchHoles 4Holes/4 Hole Punch: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(PUNCHHOLES) /VALUE(4HOLES)>> pop pop"
+*CloseUI: *FXNumPunchHoles
+
+
+*% RasterMode ===================
+*OpenUI *FXPDFRasterizedMode/Image Conversion:  PickOne
+*OrderDependency: 120.0 AnySetup *FXPDFRasterizedMode
+*DefaultFXPDFRasterizedMode: False
+*FXPDFRasterizedMode True/On:  ""
+*FXPDFRasterizedMode False/Off: ""
+*CloseUI: *FXPDFRasterizedMode
+
+*% Offset ===============
+*OpenUI *Jog/Offset Stacking: PickOne
+*OrderDependency: 175.0 AnySetup *Jog
+*DefaultJog: None
+*Jog None/No Offset: ""
+*Jog EndOfSet/Offset per Set: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+										<</TYPE(SET) /KEY(JOG) /VALUE(ENDOFSET)>> pop pop"
+*Jog DeviceDeactivation/Offset per Job: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(JOG) /VALUE(DEVICEDEACTIVATION)>> pop pop"
+*CloseUI: *Jog
+
+*% Add Front Cover ===================
+*OpenUI *FXIntCoverSheet/Add Front Cover: PickOne
+*OrderDependency: 140.0 AnySetup *FXIntCoverSheet
+*DefaultFXIntCoverSheet: None
+*FXIntCoverSheet None/No Front Cover: ""
+*FXIntCoverSheet 1stTray/Tray 1: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+										<</TYPE(SET) /KEY(INTCOVERSHEET) /VALUE(1STTRAY)>> pop pop"
+*FXIntCoverSheet 2ndTray/Tray 2: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(INTCOVERSHEET) /VALUE(2NDTRAY)>> pop pop"
+*FXIntCoverSheet 3rdTray/Tray 3: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+										<</TYPE(SET) /KEY(INTCOVERSHEET) /VALUE(3RDTRAY)>> pop pop"
+*FXIntCoverSheet 4thTray/Tray 4: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(INTCOVERSHEET) /VALUE(4THTRAY)>> pop pop"
+*FXIntCoverSheet MSI/Tray 5 (Bypass): "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(INTCOVERSHEET) /VALUE(MSI)>> pop pop"
+*CloseUI: *FXIntCoverSheet
+
+*% Add Back Cover ===================
+*OpenUI *FXIntBackCoverSheet/Add Back Cover: PickOne
+*OrderDependency: 140.0 AnySetup *FXIntBackCoverSheet
+*DefaultFXIntBackCoverSheet: None
+*FXIntBackCoverSheet None/No Back Cover: ""
+*FXIntBackCoverSheet 1stTray/Tray 1: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+										<</TYPE(SET) /KEY(INTBACKCOVERSHEET) /VALUE(1STTRAY)>> pop pop"
+*FXIntBackCoverSheet 2ndTray/Tray 2: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(INTBACKCOVERSHEET) /VALUE(2NDTRAY)>> pop pop"
+*FXIntBackCoverSheet 3rdTray/Tray 3: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+										<</TYPE(SET) /KEY(INTBACKCOVERSHEET) /VALUE(3RDTRAY)>> pop pop"
+*FXIntBackCoverSheet 4thTray/Tray 4: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(INTBACKCOVERSHEET) /VALUE(4THTRAY)>> pop pop"
+*FXIntBackCoverSheet MSI/Tray 5 (Bypass): "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(INTBACKCOVERSHEET) /VALUE(MSI)>> pop pop"
+*CloseUI: *FXIntBackCoverSheet
+
+*% Booklet Creation ===================
+*OpenUI *FXSignature/Booklet Creation: PickOne
+*OrderDependency: 10.0 AnySetup *FXSignature
+*DefaultFXSignature: None
+*FXSignature None/No Booklets: ""
+*FXSignature LeftSig/Left Bind / Top Bind: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+										<</TYPE(SET) /KEY(FIGNATURE) /VALUE(LEFTSIG)>> pop pop"
+*FXSignature RightSig/Right Bind / Bottom Bind: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(FIGNATURE) /VALUE(RIGHTSIG)>> pop pop"
+*FXSignature LeftSigCenterStaple/Booklet Staple (Left / Top Bind): "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+										<</TYPE(SET) /KEY(FIGNATURE) /VALUE(LEFTSIGCENTERSTAPLE)>> pop pop"
+*FXSignature RightSigCenterStaple/Booklet Staple (Right / Bottom Bind): "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(FIGNATURE) /VALUE(RIGHTSIGCENTERSTAPLE)>> pop pop"
+*FXSignature LeftSigFold/Bi-Fold (Left / Top Bind): "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+										<</TYPE(SET) /KEY(FIGNATURE) /VALUE(LEFTSIGFOLD)>> pop pop"
+*FXSignature RightSigFold/Bi-Fold (Right / Bottom Bind): "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(FIGNATURE) /VALUE(RIGHTSIGFOLD)>> pop pop"
+*CloseUI: *FXSignature
+
+*% Booklet Divide Output ===================
+*OpenUI *FXSigVol/Booklet Divide Output: PickOne
+*OrderDependency: 245.0 AnySetup *FXSigVol
+*DefaultFXSigVol: None
+*FXSigVol None/Off: ""
+*FXSigVol 1Sheet/Each Sheet: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+										<</TYPE(SET) /KEY(SIGVOL) /VALUE(1)>> pop pop"
+*FXSigVol 2Sheets/2 Sheets: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(SIGVOL) /VALUE(2)>> pop pop"
+*FXSigVol 3Sheets/3 Sheets: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+										<</TYPE(SET) /KEY(SIGVOL) /VALUE(3)>> pop pop"
+*FXSigVol 4Sheets/4 Sheets: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(SIGVOL) /VALUE(4)>> pop pop"
+*FXSigVol 5Sheets/5 Sheets: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(SIGVOL) /VALUE(5)>> pop pop"
+*FXSigVol 6Sheets/6 Sheets: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+										<</TYPE(SET) /KEY(SIGVOL) /VALUE(6)>> pop pop"
+*FXSigVol 7Sheets/7 Sheets: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(SIGVOL) /VALUE(7)>> pop pop"
+*FXSigVol 8Sheets/8 Sheets: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(SIGVOL) /VALUE(8)>> pop pop"
+*FXSigVol 9Sheets/9 Sheets: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+										<</TYPE(SET) /KEY(SIGVOL) /VALUE(9)>> pop pop"
+*FXSigVol 10Sheets/10 Sheets: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(SIGVOL) /VALUE(10)>> pop pop"
+*FXSigVol 11Sheets/11 Sheets: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(SIGVOL) /VALUE(11)>> pop pop"
+*FXSigVol 12Sheets/12 Sheets: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+										<</TYPE(SET) /KEY(SIGVOL) /VALUE(12)>> pop pop"
+*FXSigVol 13Sheets/13 Sheets: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(SIGVOL) /VALUE(13)>> pop pop"
+*FXSigVol 14Sheets/14 Sheets: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(SIGVOL) /VALUE(14)>> pop pop"
+*FXSigVol 15Sheets/15 Sheets: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(SIGVOL) /VALUE(15)>> pop pop"
+*FXSigVol 16Sheets/16 Sheets: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+										<</TYPE(SET) /KEY(SIGVOL) /VALUE(16)>> pop pop"
+*FXSigVol 17Sheets/17 Sheets: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(SIGVOL) /VALUE(17)>> pop pop"
+*FXSigVol 18Sheets/18 Sheets: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(SIGVOL) /VALUE(18)>> pop pop"
+*FXSigVol 19Sheets/19 Sheets: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(SIGVOL) /VALUE(19)>> pop pop"
+*FXSigVol 20Sheets/20 Sheets: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+										<</TYPE(SET) /KEY(SIGVOL) /VALUE(20)>> pop pop"
+*FXSigVol 21Sheets/21 Sheets: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(SIGVOL) /VALUE(21)>> pop pop"
+*FXSigVol 22Sheets/22 Sheets: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(SIGVOL) /VALUE(22)>> pop pop"
+*FXSigVol 23Sheets/23 Sheets: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(SIGVOL) /VALUE(23)>> pop pop"
+*FXSigVol 24Sheets/24 Sheets: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+										<</TYPE(SET) /KEY(SIGVOL) /VALUE(24)>> pop pop"
+*FXSigVol 25Sheets/25 Sheets: "<</TYPE(SET) /KEY(FINISH) /VALUE(ON)>> 
+											<</TYPE(SET) /KEY(SIGVOL) /VALUE(25)>> pop pop"
+*CloseUI: *FXSigVol
+
+*% Custom Paper ===================
+*HWMargins: 11.62 11.62 11.62 11.62
+*LeadingEdge Short: ""
+*DefaultLeadingEdge: Short
+*MaxMediaWidth: "907"
+*MaxMediaHeight: "1369"
+*NonUIOrderDependency: 40.0 AnySetup *CustomPageSize
+*CustomPageSize True: "
+userdict /4.3PPDCompliant known
+    {userdict /4.3PPDCompliant get } {false} ifelse
+{
+  pop pop pop
+  3 dict begin
+    /PageSize [
+      4 -2 roll
+    ] def
+  /ImagingBBox null def
+  currentdict end setpagedevice
+}{
+  pop pop pop
+  3 dict begin
+    /PageSize [
+      4 -2 roll exch
+    ] def
+  /ImagingBBox null def
+  currentdict end setpagedevice
+} ifelse
+"
+*End
+
+*ParamCustomPageSize Height:       1 points 278 1369
+*ParamCustomPageSize Width:        2 points 253 907
+*ParamCustomPageSize WidthOffset:  3 points 0 0 
+*ParamCustomPageSize HeightOffset: 4 points 0 0 
+*ParamCustomPageSize Orientation:  5 int 1 1
+
+*% Last Edit Date: $Date: 2008/04/23 11:04:58 $
+*% end of PPD file
+
+*% Japanese localization
+*ja.Translation ModelName/FX Mac OS X用プリンタードライバー: ""
+*ja.Translation FXMinDigitPasscode/暗証番号の最小桁数: ""
+*ja.FXMinDigitPasscode 0/0: ""
+*ja.FXMinDigitPasscode 1/1: ""
+*ja.FXMinDigitPasscode 2/2: ""
+*ja.FXMinDigitPasscode 3/3: ""
+*ja.FXMinDigitPasscode 4/4: ""
+*ja.FXMinDigitPasscode 5/5: ""
+*ja.FXMinDigitPasscode 6/6: ""
+*ja.FXMinDigitPasscode 7/7: ""
+*ja.FXMinDigitPasscode 8/8: ""
+*ja.FXMinDigitPasscode 9/9: ""
+*ja.FXMinDigitPasscode 10/10: ""
+*ja.FXMinDigitPasscode 11/11: ""
+*ja.FXMinDigitPasscode 12/12: ""
+*ja.Translation FXSelectID/認証/集計時の入力項目: ""
+*ja.FXSelectID UserID_AccountID/User IDとAccount ID: ""
+*ja.FXSelectID UserID/User IDのみ: ""
+*ja.FXSelectID AccountID/Account IDのみ: ""
+*ja.Translation General/General: ""
+*ja.Translation Duplex/両面印刷: ""
+*ja.Duplex None/なし: ""
+*ja.Duplex DuplexNoTumble/長辺をとじる: ""
+*ja.Duplex DuplexTumble/短辺をとじる: ""
+*ja.Translation Collate/部単位で印刷: ""
+*ja.Collate False/しない: ""
+*ja.Collate True/する: ""
+*ja.Translation PageSize/用紙サイズ: ""
+*ja.PageSize A3/A3: ""
+*ja.PageSize B4/B4: ""
+*ja.PageSize A4/A4: ""
+*ja.PageSize B5/B5: ""
+*ja.PageSize A5/A5: ""
+*ja.PageSize Letter/8.5x11": ""
+*ja.PageSize Legal/8.5x14": ""
+*ja.PageSize Tabloid/11x17": ""
+*ja.PageSize FXPostcard/はがき: ""
+*ja.PageSize Custom/Custom: ""
+*ja.Translation PageRegion/PageRegion: ""
+*ja.PageRegion A3/A3: ""
+*ja.PageRegion B4/B4: ""
+*ja.PageRegion A4/A4: ""
+*ja.PageRegion B5/B5: ""
+*ja.PageRegion A5/A5: ""
+*ja.PageRegion Letter/8.5x11": ""
+*ja.PageRegion Legal/8.5x14": ""
+*ja.PageRegion Tabloid/11x17": ""
+*ja.PageRegion FXPostcard/はがき: ""
+*ja.PageRegion Custom/Custom: ""
+*ja.Translation FXColorMode/カラーモード: ""
+*ja.FXColorMode Color/カラー: ""
+*ja.FXColorMode Black/白黒: ""
+*ja.Translation FXOutputMode/印刷モード: ""
+*ja.FXOutputMode HighSpeed/高速: ""
+*ja.FXOutputMode Standard/標準: ""
+*ja.FXOutputMode HighQuality/高画質: ""
+*ja.Translation InputSlot/給紙方法: ""
+*ja.InputSlot 1stTray/トレイ1: ""
+*ja.InputSlot 2ndTray/トレイ2: ""
+*ja.InputSlot 3rdTray/トレイ3: ""
+*ja.InputSlot 4thTray/トレイ4: ""
+*ja.InputSlot BypassTray/手差し: ""
+*ja.Translation MediaType/用紙種類: ""
+*ja.MediaType Default/指定しない: ""
+*ja.MediaType Stationary/普通紙: ""
+*ja.MediaType StationaryBack/普通紙うら面: ""
+*ja.MediaType RecyclePaper/再生紙: ""
+*ja.MediaType ThickPaper/厚紙: ""
+*ja.Translation FXStaple/ホチキス: ""
+*ja.FXStaple None/しない: ""
+*ja.FXStaple UpperLeftSinglePort/左上1ヵ所: ""
+*ja.FXStaple UpperRightSinglePort/右上1ヵ所: ""
+*ja.FXStaple BottomRightSinglePort/右下1ヵ所: ""
+*ja.FXStaple BottomLeftSinglePort/左下1ヵ所: ""
+*ja.FXStaple LeftDoublePort/左2ヵ所: ""
+*ja.FXStaple TopDoublePort/上2ヵ所: ""
+*ja.FXStaple RightDoublePort/右2ヵ所: ""
+*ja.FXStaple BottomDoublePort/下2ヵ所: ""
+*ja.Translation FXPunch/パンチ: ""
+*ja.FXPunch None/しない: ""
+*ja.FXPunch Left/左: ""
+*ja.FXPunch Top/上: ""
+*ja.FXPunch Right/右: ""
+*ja.FXPunch Bottom/下: ""
+*ja.Translation FXNumPunchHoles/パンチ穴: ""
+*ja.FXNumPunchHoles Auto/プリンタの設定を用いる: ""
+*ja.FXNumPunchHoles 2Holes/2穴: ""
+*ja.FXNumPunchHoles 3Holes/3穴: ""
+*ja.FXNumPunchHoles 4Holes/4穴: ""
+*ja.Translation Jog/オフセット排出: ""
+*ja.Jog None/しない: ""
+*ja.Jog EndOfSet/セットごとにずらす: ""
+*ja.Jog DeviceDeactivation/ジョブごとにずらす: ""
+*ja.Translation FXIntCoverSheet/おもて表紙: ""
+*ja.FXIntCoverSheet None/付けない: ""
+*ja.FXIntCoverSheet 1stTray/トレイ1: ""
+*ja.FXIntCoverSheet 2ndTray/トレイ2: ""
+*ja.FXIntCoverSheet 3rdTray/トレイ3: ""
+*ja.FXIntCoverSheet 4thTray/トレイ4: ""
+*ja.FXIntCoverSheet MSI/トレイ5(手差し): ""
+*ja.Translation FXIntBackCoverSheet/うら表紙: ""
+*ja.FXIntBackCoverSheet None/付けない: ""
+*ja.FXIntBackCoverSheet 1stTray/トレイ1: ""
+*ja.FXIntBackCoverSheet 2ndTray/トレイ2: ""
+*ja.FXIntBackCoverSheet 3rdTray/トレイ3: ""
+*ja.FXIntBackCoverSheet 4thTray/トレイ4: ""
+*ja.FXIntBackCoverSheet MSI/トレイ5(手差し): ""
+*ja.Translation FXPDFRasterizedMode/イメージ変換出力: ""
+*ja.FXPDFRasterizedMode True/する: ""
+*ja.FXPDFRasterizedMode False/しない: ""
+*ja.Translation FXSignature/製本: ""
+*ja.FXSignature None/しない: ""
+*ja.FXSignature LeftSig/左とじ/上とじ: ""
+*ja.FXSignature RightSig/右とじ/下とじ: ""
+*ja.FXSignature LeftSigCenterStaple/中とじホチキス(左とじ/上とじ): ""
+*ja.FXSignature RightSigCenterStaple/中とじホチキス(右とじ/下とじ): ""
+*ja.FXSignature LeftSigFold/二つ折り (左とじ/上とじ): ""
+*ja.FXSignature RightSigFold/二つ折り (右とじ/下とじ): ""
+*ja.Translation FXSigVol/製本の分冊: ""
+*ja.FXSigVol None/しない: ""
+*ja.FXSigVol 1Sheet/1枚ごと: ""
+*ja.FXSigVol 2Sheets/2枚ごと: ""
+*ja.FXSigVol 3Sheets/3枚ごと: ""
+*ja.FXSigVol 4Sheets/4枚ごと: ""
+*ja.FXSigVol 5Sheets/5枚ごと: ""
+*ja.FXSigVol 6Sheets/6枚ごと: ""
+*ja.FXSigVol 7Sheets/7枚ごと: ""
+*ja.FXSigVol 8Sheets/8枚ごと: ""
+*ja.FXSigVol 9Sheets/9枚ごと: ""
+*ja.FXSigVol 10Sheets/10枚ごと: ""
+*ja.FXSigVol 11Sheets/11枚ごと: ""
+*ja.FXSigVol 12Sheets/12枚ごと: ""
+*ja.FXSigVol 13Sheets/13枚ごと: ""
+*ja.FXSigVol 14Sheets/14枚ごと: ""
+*ja.FXSigVol 15Sheets/15枚ごと: ""
+*ja.FXSigVol 16Sheets/16枚ごと: ""
+*ja.FXSigVol 17Sheets/17枚ごと: ""
+*ja.FXSigVol 18Sheets/18枚ごと: ""
+*ja.FXSigVol 19Sheets/19枚ごと: ""
+*ja.FXSigVol 20Sheets/20枚ごと: ""
+*ja.FXSigVol 21Sheets/21枚ごと: ""
+*ja.FXSigVol 22Sheets/22枚ごと: ""
+*ja.FXSigVol 23Sheets/23枚ごと: ""
+*ja.FXSigVol 24Sheets/24枚ごと: ""
+*ja.FXSigVol 25Sheets/25枚ごと: ""
+*cupsLanguages: "ja"
+
+
+
+*%APLANNOTATE START
+*%XML: <?xml version="1.0" encoding="UTF-8"?>
+*%XML: <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+*%XML: <plist version="1.0">
+*%XML: <dict>
+*%XML: 	<key>OriginalPPD</key>
+*%XML: 	<string>/var/folders/h9/262s7mfx2y3g6lnly2zxh01m0000gn/T//001a74f68cf90</string>
+*%XML: </dict>
+*%XML: </plist>
+*%APLANNOTATE END
