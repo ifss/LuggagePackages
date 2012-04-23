@@ -1,0 +1,12 @@
+.DS_Store
+._.DS_Store
+.*~
+*.tar
+*.zip
+*.bz2
+*.gz
+*.dmg
+*.pkg
+*.mpkg
+*.app
+.svn*
