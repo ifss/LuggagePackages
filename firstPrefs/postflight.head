@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Standard settings for existing users or default (new) users
+# Script is meant to be run as a postflight script in a .pkg file. 
+
+# Declare directory variables.
+
+PREFS_DIR="$3/Library/Preferences"

@@ -1,0 +1,1 @@
+An alternative to the standard InstaDMG firstboot package, for use on already booted systems -- does not set user preferences by postflight script.
