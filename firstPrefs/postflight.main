@@ -1,4 +1,4 @@
-# Preferences directory is set during make stage
+# Preferences directory/user is set during make stage
  
 # Declare 'defaults'and 'PlistBuddy'.
  
@@ -31,19 +31,37 @@ $defaults write "${PREFS_DIR}/com.apple.TimeMachine" DoNotOfferNewDisksForBackup
 # Disable Time Machine AutoBackup
 $defaults write "${PREFS_DIR}/com.apple.TimeMachine" AutoBackup -boolean false
 
-# Set desktop background to ifss standard pic (also done in image)
-$defaults write "${USERPREFS_DIR}/com.apple.desktop" Background '{default = {ImageFilePath = "/Library/Desktop Pictures/IFSS_KeyImage_Sec_Logo.jpg"; };}'
+# Set desktop background to ifss standard pic (now done in image firstboot.sh)
+#$defaults write "${USERPREFS_DIR}/com.apple.desktop" Background '{default = {ImageFilePath = "/Library/Desktop Pictures/IFSS_KeyImage_Sec_Logo.jpg"; };}'
+#if [ "${USER}" != 'default' ]; then
+#   chown ${USER}:staff "${USERPREFS_DIR}/com.apple.desktop.plist"
+#   if [ "${OS}" == '10.7' ]; then
+#      chown ${USER}:staff "${USERPREFS_DIR}/com.apple.desktop.plist.lockfile"
+#   fi
+#fi
 
 # Set Safari Preferences.
-$defaults write "${USERPREFS_DIR}/com.apple.Safari" HomePage http://www.ifss.edu.au/student-resources/
+$defaults write "${USERPREFS_DIR}/com.apple.Safari" HomePage http://www.ifss.edu.au/
 $defaults write "${USERPREFS_DIR}/com.apple.Safari" ShowStatusBar -boolean true
 $defaults write "${USERPREFS_DIR}/com.apple.Safari" ConfirmClosingMultiplePages 0
 $defaults write "${USERPREFS_DIR}/com.apple.Safari" AutoOpenSafeDownloads -boolean false
+if [ "${USER}" != 'default' ]; then
+   chown ${USER}:staff "${USERPREFS_DIR}/com.apple.Safari.plist"
+   if [ "${OS}" == '10.7' ]; then
+      chown ${USER}:staff "${USERPREFS_DIR}/com.apple.Safari.plist.lockfile"
+   fi
+fi
 
 # Set QT Player 7 as default for mov, mp4 and avi files
-$defaults write "${USERPREFS_DIR}/com.apple.LaunchServices" LSHandlers -array-add '{ LSHandlerContentType = "com.apple.quicktime-movie"; LSHandlerRoleAll = "com.apple.quicktimeplayer"; }'
-$defaults write "${USERPREFS_DIR}/com.apple.LaunchServices" LSHandlers -array-add '{ LSHandlerContentType = "public.avi"; LSHandlerRoleAll = "com.apple.quicktimeplayer"; }'
-$defaults write "${USERPREFS_DIR}/com.apple.LaunchServices" LSHandlers -array-add '{ LSHandlerContentType = "public.mpeg-4"; LSHandlerRoleAll = "com.apple.quicktimeplayer"; }'
+#$defaults write "${USERPREFS_DIR}/com.apple.LaunchServices" LSHandlers -array-add '{ LSHandlerContentType = "com.apple.quicktime-movie"; LSHandlerRoleAll = "com.apple.quicktimeplayer"; }'
+#$defaults write "${USERPREFS_DIR}/com.apple.LaunchServices" LSHandlers -array-add '{ LSHandlerContentType = "public.avi"; LSHandlerRoleAll = "com.apple.quicktimeplayer"; }'
+#$defaults write "${USERPREFS_DIR}/com.apple.LaunchServices" LSHandlers -array-add '{ LSHandlerContentType = "public.mpeg-4"; LSHandlerRoleAll = "com.apple.quicktimeplayer"; }'
+#if [ "${USER}" != 'default' ]; then
+#   chown ${USER}:staff "${USERPREFS_DIR}/com.apple.LaunchServices.plist"
+#   if [ "${OS}" == '10.7' ]; then
+#      chown ${USER}:staff "${USERPREFS_DIR}/com.apple.LaunchServices.plist.lockfile"
+#   fi
+#fi
 
 # Set language and region
 $defaults write "${USERPREFS_DIR}/.GlobalPreferences" AppleLanguages -array-add 'en_AU' 
@@ -52,10 +70,16 @@ $defaults write "${USERPREFS_DIR}/.GlobalPreferences" NSPreferredSpellServerLang
 $defaults write "${USERPREFS_DIR}/.GlobalPreferences" AppleMeasurementUnits -string 'Centimeters'
 $defaults write "${USERPREFS_DIR}/.GlobalPreferences" AppleMetricUnits -boolean true
 
+$defaults write "${USERPREFS_DIR}/.GlobalPreferences" AppleLocale -string 'en_AU'
 $defaults write "${USERPREFS_DIR}/com.apple.HIToolbox" AppleDateResID -dict smRoman -int 15
 $defaults write "${USERPREFS_DIR}/com.apple.HIToolbox" AppleNumberResID -dict smRoman -int 15
 $defaults write "${USERPREFS_DIR}/com.apple.HIToolbox" AppleTimeResID -dict smRoman -int 15
-$defaults write "${USERPREFS_DIR}/.GlobalPreferences" AppleLocale -string 'en_AU'
+if [ "${USER}" != 'default' ]; then
+   chown ${USER}:staff "${USERPREFS_DIR}/com.apple.HIToolbox.plist"
+   if [ "${OS}" == '10.7' ]; then
+      chown ${USER}:staff "${USERPREFS_DIR}/com.apple.HIToolbox.plist.lockfile"
+   fi
+fi
 
 # System Preferences > Software Update > Download updates automatically: off
 $defaults write "${PREFS_DIR}/com.apple.SoftwareUpdate" ScheduleFrequency -int -1
@@ -65,13 +89,26 @@ $defaults write "${PREFS_DIR}/com.apple.SoftwareUpdate" AutomaticDownload -boole
 $defaults write "${USERPREFS_DIR}/com.apple.digihub" 'com.apple.digihub.cd.music.appeared' '<dict><key>action</key><integer>1</integer></dict>'
 $defaults write "${USERPREFS_DIR}/com.apple.digihub" 'com.apple.digihub.cd.picture.appeared' '<dict><key>action</key><integer>1</integer></dict>'
 $defaults write "${USERPREFS_DIR}/com.apple.digihub" 'com.apple.digihub.dvd.video.appeared' '<dict><key>action</key><integer>1</integer></dict>'
+if [ "${USER}" != 'default' ]; then
+   chown ${USER}:staff "${USERPREFS_DIR}/com.apple.digihub.plist"
+   if [ "${OS}" == '10.7' ]; then
+      chown ${USER}:staff "${USERPREFS_DIR}/com.apple.digihub.plist.lockfile"
+   fi
+fi
 
 # Disable the Ping sidebar in iTunes
 $defaults write "${USERPREFS_DIR}/com.apple.iTunes" disablePingSidebar -boolean true
 
 # Disable all the other Ping stuff in iTunes
 $defaults write "${USERPREFS_DIR}/com.apple.iTunes" disablePing -boolean true
+if [ "${USER}" != 'default' ]; then
+   chown ${USER}:staff "${USERPREFS_DIR}/com.apple.iTunes.plist"
+   if [ "${OS}" == '10.7' ]; then
+      chown ${USER}:staff "${USERPREFS_DIR}/com.apple.iTunes.plist.lockfile"
+   fi
+fi
 
+# System Preferences > Dock (some of these will be overwritten by custom docks installed later)
 ## Magnification on, size in pixels
 $defaults write "${USERPREFS_DIR}/com.apple.dock" magnification -boolean true
 $defaults write "${USERPREFS_DIR}/com.apple.dock" largesize -int 95
@@ -82,24 +119,41 @@ $defaults write "${USERPREFS_DIR}/com.apple.dock" autohide -boolean true
 ## Position on screen
 $defaults write "${USERPREFS_DIR}/com.apple.dock" orientation -string 'bottom'
 
+## Size: pixels
+$defaults write "${USERPREFS_DIR}/com.apple.dock" tilesize -int 41
+
+## Minimize windows using: Scale effect
+$defaults write "${USERPREFS_DIR}/com.apple.dock" mineffect -string 'scale'
+
+if [ "${USER}" != 'default' ]; then
+   chown ${USER}:staff "${USERPREFS_DIR}/com.apple.dock.plist"
+   if [ "${OS}" == '10.7' ]; then
+      chown ${USER}:staff "${USERPREFS_DIR}/com.apple.dock.plist.lockfile"
+   fi
+fi
+
 # Set Apple Mouse button 1 to Primary click and button 2 to Secondary click.
 $defaults write "${USERPREFS_DIR}/com.apple.driver.AppleHIDMouse" Button1 -integer 1
 $defaults write "${USERPREFS_DIR}/com.apple.driver.AppleHIDMouse" Button2 -integer 2
+if [ "${USER}" != 'default' ]; then
+   chown ${USER}:staff "${USERPREFS_DIR}/com.apple.driver.AppleHIDMouse.plist"
+   if [ "${OS}" == '10.7' ]; then
+      chown ${USER}:staff "${USERPREFS_DIR}/com.apple.driver.AppleHIDMouse.plist.lockfile"
+   fi
+fi
 
 # Set Apple Magic Mouse button 1 to Primary click and button 2 to Secondary click.
 $defaults write "${USERPREFS_DIR}/com.apple.driver.AppleBluetoothMultitouch.mouse" MouseButtonMode -string 'TwoButton'
 
 # Set Apple Magic Mouse inertia scroll mode 
 $defaults write "${USERPREFS_DIR}/com.apple.driver.AppleBluetoothMultitouch.mouse" MouseMomentumScroll -boolean true
+if [ "${USER}" != 'default' ]; then
+   chown ${USER}:staff "${USERPREFS_DIR}/com.apple.driver.AppleBluetoothMultitouch.mouse.plist"
+   if [ "${OS}" == '10.7' ]; then
+      chown ${USER}:staff "${USERPREFS_DIR}/com.apple.driver.AppleBluetoothMultitouch.mouse.plist.lockfile"
+   fi
+fi
 
-# Set Finder Preferences: show all media & servers, arranged by "kind"
-# Note: not sure these work - also set by Local MCX
-$defaults write "${USERPREFS_DIR}/com.apple.finder" ShowMountedServersOnDesktop -boolean true
-$defaults write "${USERPREFS_DIR}/com.apple.finder" ShowRemovableMediaOnDesktop -boolean true
-$defaults write "${USERPREFS_DIR}/com.apple.finder" ShowExternalHardDrivesOnDesktop -boolean true
-$defaults write "${USERPREFS_DIR}/com.apple.finder" ShowHardDrivesOnDesktop -boolean true
-$PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy kind" "${USERPREFS_DIR}/com.apple.finder.plist"
- 
 # Set Finder Sidebar Preferences: Show all sidebar icons except back to my mac & bonjour
 # And not certain any of these work
 $PlistBuddy -c "Set :networkbrowser:CustomListProperties:com.apple.NetworkBrowser.bonjourEnabled 0" "${USERPREFS_DIR}/com.apple.sidebarlists.plist"
@@ -110,6 +164,14 @@ $PlistBuddy -c "Set :systemitems:ShowHardDisks 1" "${USERPREFS_DIR}/com.apple.si
 $PlistBuddy -c "Set :systemitems:ShowRemovable 1" "${USERPREFS_DIR}/com.apple.sidebarlists.plist"
 $PlistBuddy -c "Set :systemitems:ShowServers 1" "${USERPREFS_DIR}/com.apple.sidebarlists.plist"
 
+# Set Finder Preferences: show all media & servers, arranged by "kind"
+# Note: not sure these work - also set by Local MCX
+$defaults write "${USERPREFS_DIR}/com.apple.finder" ShowMountedServersOnDesktop -boolean true
+$defaults write "${USERPREFS_DIR}/com.apple.finder" ShowRemovableMediaOnDesktop -boolean true
+$defaults write "${USERPREFS_DIR}/com.apple.finder" ShowExternalHardDrivesOnDesktop -boolean true
+$defaults write "${USERPREFS_DIR}/com.apple.finder" ShowHardDrivesOnDesktop -boolean true
+$PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy kind" "${USERPREFS_DIR}/com.apple.finder.plist"
+
 # Hide iDisk from the sidebar (in case above doesn't work)
 $defaults write "${USERPREFS_DIR}/com.apple.finder" RemoveIDiskFromSidebarOnStartup -boolean true
 
@@ -119,18 +181,18 @@ $defaults write "${USERPREFS_DIR}/com.apple.finder" NewWindowTarget -string 'PfD
 # Configure Finder to use Column View - but may not be working globally in Lion
 $defaults write "${USERPREFS_DIR}/com.apple.finder" AlwaysOpenWindowsInColumnView -boolean true
 # Alternatively, this may work, but can be inconsistent
-$defaults write "${USERPREFS_DIR}/com.apple.Finder" FXPreferredViewStyle clmv
+$defaults write "${USERPREFS_DIR}/com.apple.finder" FXPreferredViewStyle clmv
 
 # Configure Finder to show Path and Status Bars
 $defaults write "${USERPREFS_DIR}/com.apple.finder" ShowPathbar -boolean true
 $defaults write "${USERPREFS_DIR}/com.apple.finder" ShowStatusBar -boolean true
 
-# System Preferences > Dock (these seem to be overwritten by installed dock)
-## Size: pixels
-$defaults write "${USERPREFS_DIR}/com.apple.dock" tilesize -int 41
-
-## Minimize windows using: Scale effect
-$defaults write "${USERPREFS_DIR}/com.apple.dock" mineffect -string 'scale'
+if [ "${USER}" != 'default' ]; then
+   chown ${USER}:staff "${USERPREFS_DIR}/com.apple.finder.plist"
+   if [ "${OS}" == '10.7' ]; then
+      chown ${USER}:staff "${USERPREFS_DIR}/com.apple.finder.plist.lockfile"
+   fi
+fi
 
 
 # OS Specific settings
@@ -147,12 +209,25 @@ case $OS in
 #$defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -boolean false
 $defaults write "${USERPREFS_DIR}/.GlobalPreferences" NSQuitAlwaysKeepsWindows -boolean false
 $defaults write "${USERPREFS_DIR}/com.apple.loginwindow" TALLogoutSavesState -boolean false
+# Problem is TALLogoutSavesState gets reset on each login
+# Supposedly in combination with this it doesn't
+$defaults write "${USERPREFS_DIR}/com.apple.loginwindow" LoginwindowLaunchesRelaunchApps -boolean false
+if [ "${USER}" != 'default' ]; then
+   chown ${USER}:staff "${USERPREFS_DIR}/com.apple.loginwindow.plist"
+   chown ${USER}:staff "${USERPREFS_DIR}/com.apple.loginwindow.plist.lockfile"
+   # Also delete user's ByHost pref which has saved state of apps to relaunch
+   rm "${USERPREFS_DIR}/ByHost/com.apple.loginwindow.*"
+fi
 
 # Disables natural scrolling movie on first login for Magic Mouse
 $defaults write "${USERPREFS_DIR}/com.apple.SetupAssistant" GestureMovieSeen -string 'mouse'
 
 # Disables iCloud pop-up on first login for Macs running 10.7.2 or higher
 $defaults write "${USERPREFS_DIR}/com.apple.SetupAssistant" DidSeeCloudSetup -boolean true
+if [ "${USER}" != 'default' ]; then
+   chown ${USER}:staff "${USERPREFS_DIR}/com.apple.SetupAssistant.plist"
+   chown ${USER}:staff "${USERPREFS_DIR}/com.apple.SetupAssistant.plist.lockfile"
+fi
 
 # This prevents addition to dock of all new apps such as Mission Control, App Store etc
 # Currently managed through MCX for ifss user - but may not be working 100% there, and this does it for all users
@@ -162,5 +237,12 @@ $defaults write "${PREFS_DIR}/com.apple.dockfixup" 'remove-file' '<dict><key>/Ap
 
 ;;
 esac
+
+if [ "${USER}" != 'default' ]; then
+   chown ${USER}:staff "${USERPREFS_DIR}/.GlobalPreferences.plist"
+   if [ "${OS}" == '10.7' ]; then
+      chown ${USER}:staff "${USERPREFS_DIR}/.GlobalPreferences.plist.lockfile"
+   fi
+fi
 
 exit 0

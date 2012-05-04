@@ -2,7 +2,7 @@
 
 # Standard settings for images.
 # Script is meant to be run as a postflight script in a .pkg file. 
-# Also installs startup settings script as a Launchd item which is inside the package /Contents/Resources directory.
+# Package also installs startup settings script as a Launchd item which is inside the package /Contents/Resources directory.
  
 ##### Begin Declare Variables Used by Script #####
  
@@ -54,7 +54,7 @@ $defaults write "${PREFS_DIR}/com.apple.TimeMachine" AutoBackup -boolean false
 $defaults write "${USERPREFS_DIR}/com.apple.desktop" Background '{default = {ImageFilePath = "/Library/Desktop Pictures/IFSS_KeyImage_Sec_Logo.jpg"; };}'
 
 # Set Safari Preferences.
-$defaults write "${USERPREFS_DIR}/com.apple.Safari" HomePage http://www.ifss.edu.au/student-resources/
+$defaults write "${USERPREFS_DIR}/com.apple.Safari" HomePage http://www.ifss.edu.au/
 $defaults write "${USERPREFS_DIR}/com.apple.Safari" ShowStatusBar -boolean true
 $defaults write "${USERPREFS_DIR}/com.apple.Safari" ConfirmClosingMultiplePages 0
 $defaults write "${USERPREFS_DIR}/com.apple.Safari" AutoOpenSafeDownloads -boolean false

@@ -46,6 +46,7 @@ script:
 	@-echo "Creating postflight script for ${USER}..."
 	@cat postflight.head > postflight
 	@echo 'USERPREFS_DIR="$$3${PREFDIR}"' >> postflight
+	@echo 'USER="${USER}"' >> postflight
 	@cat postflight.main >> postflight
 	@sudo chmod +x ${CURDIR}/postflight
 	@sudo chown 501:20 ${CURDIR}/postflight

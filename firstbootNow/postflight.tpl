@@ -78,14 +78,15 @@ wifiDevice=`/usr/sbin/networksetup -listallhardwareports | egrep -A 1 "Hardware 
 
 sleep 10
 
-/usr/sbin/networksetup -addpreferredwirelessnetworkatindex $wifiDevice $SSID1 1 $SEC $PWD
-/usr/sbin/networksetup -addpreferredwirelessnetworkatindex $wifiDevice $SSID2 2 $SEC $PWD
+/usr/sbin/networksetup -addpreferredwirelessnetworkatindex $wifiDevice "$SSID1" 1 $SEC $PWD
+/usr/sbin/networksetup -addpreferredwirelessnetworkatindex $wifiDevice "$SSID2" 2 $SEC $PWD
 
 sleep 10
-/usr/sbin/networksetup -addpreferredwirelessnetworkatindex $wifiDevice $SSID0 0 $SEC $PWD
+/usr/sbin/networksetup -addpreferredwirelessnetworkatindex $wifiDevice "$SSID0" 0 $SEC $PWD
 
-# Might need to try this if ever above doesn't work
-#/usr/sbin/networksetup -setairportnetwork $wifiDevice $SSID0 $PWD
+# Since we are on a booted image, need to set the active network
+sleep 10
+/usr/sbin/networksetup -setairportnetwork $wifiDevice "$SSID0" $PWD
 
 
 #Adds Printers

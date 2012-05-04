@@ -21,16 +21,17 @@ help::
 	@-echo "Create a firstboot package for use on a new image"
 	@-echo
 	@-echo "make script - run first to create firstboot script for the package:"
-	@-echo "            - usage: sudo make script WSCONF=xxx PWD=yyy"
-	@-echo "            - where WSCONF is Lab_1, Lab_2, etc and PWD is wifi password"
+	@-echo "            - usage: sudo make script WSCONF=xxx PWD=yyy U501=aaa U502=sss"
+	@-echo "            - where WSCONF is Lab_1, Lab_2, etc, PWD is wifi password"
+	@-echo "            - where U501 is the admin user and U502 the standard user"
 	@-echo
 	@-echo "Once firstboot script is made: sudo make pkg WSCONF=xxx"
 	@-echo
-	@-echo "Finally: make cleanup - delete firstboot containing clear text password"
+	@-echo "Finally: make cleanup - delete firstboot containing clear text password/names"
 	@-echo
 	@-echo "ALTERNATIVELY:"
 	@-echo
-	@-echo "sudo make script WSCONF=xxx PWD=yyy pkg cleanup"
+	@-echo "sudo make script WSCONF=xxx PWD=yyy U501=aaa U502=sss pkg cleanup"
 	@-echo
 
 script:
@@ -38,6 +39,8 @@ script:
 	@mv ${CURDIR}/firstboot.sh.tpl ${CURDIR}/firstboot.sh
 	@sed -i '.tpl' 's/WIFIPASSWORDHERE/${PWD}/' ${CURDIR}/firstboot.sh 
 	@sed -i '' 's/SETWSCONFIGHERE/${WSCONF}/' ${CURDIR}/firstboot.sh 
+	@sed -i '' 's/ADMINUSER/${U501}/' ${CURDIR}/firstboot.sh
+	@sed -i '' 's/STDUSER/${U502}/' ${CURDIR}/firstboot.sh
 	@sudo chmod +x ${CURDIR}/firstboot.sh
 	@-echo "Now: sudo make pkg WSCONF=${WSCONF}"
 	@-echo "Then: make cleanup"

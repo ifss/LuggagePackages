@@ -74,14 +74,14 @@ wifiDevice=`/usr/sbin/networksetup -listallhardwareports | egrep -A 1 "Hardware 
 
 sleep 10
 
-/usr/sbin/networksetup -addpreferredwirelessnetworkatindex $wifiDevice $SSID1 1 $SEC $PWD
-/usr/sbin/networksetup -addpreferredwirelessnetworkatindex $wifiDevice $SSID2 2 $SEC $PWD
+/usr/sbin/networksetup -addpreferredwirelessnetworkatindex $wifiDevice "$SSID1" 1 $SEC $PWD
+/usr/sbin/networksetup -addpreferredwirelessnetworkatindex $wifiDevice "$SSID2" 2 $SEC $PWD
 
 sleep 10
-/usr/sbin/networksetup -addpreferredwirelessnetworkatindex $wifiDevice $SSID0 0 $SEC $PWD
+/usr/sbin/networksetup -addpreferredwirelessnetworkatindex $wifiDevice "$SSID0" 0 $SEC $PWD
 
 # Might need to try this if ever above doesn't work
-#/usr/sbin/networksetup -setairportnetwork $wifiDevice $SSID0 $PWD
+#/usr/sbin/networksetup -setairportnetwork $wifiDevice "$SSID0" $PWD
 
 
 #Adds Printers
@@ -105,6 +105,18 @@ driver_ppd="/Library/Printers/PPDs/Contents/Resources/FX Print Driver for Mac OS
 # Set the printer as the default if we want.
 /usr/bin/lpoptions -d $printername
 
+USER501="ADMINUSER"
+USER502="STDUSER"
+
+# Set the standard user pics here for this type of install
+/usr/bin/dscl . -create /users/${USER502} Picture '/Library/User Pictures/IFSS/ifss.tiff'
+/usr/bin/dscl . -create /users/${USER501} Picture '/Library/User Pictures/Nature/Zen.tif'
+/usr/bin/defaults write /Users/${USER502}/Library/Preferences/com.apple.desktop Background '{default = {ImageFilePath = "/Library/Desktop Pictures/IFSS_KeyImage_Sec_Logo.jpg"; };}'
+chown ${USER502}:staff /Users/${USER502}/Library/Preferences/com.apple.desktop.plist
+
+# Change to standard user
+
+/usr/bin/dscl . -delete /Groups/admin GroupMembership $USER502
 
 #Securely removes the launchd item and script.
 srm /Library/LaunchDaemons/au.edu.ifss.firstboot.plist

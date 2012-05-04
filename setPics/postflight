@@ -1,0 +1,6 @@
+#!/bin/bash
+
+sudo /usr/bin/dscl . -create /users/ifss Picture '/Library/User Pictures/IFSS/ifss.tiff'
+sudo /usr/bin/dscl . -create /users/ladmin Picture '/Library/User Pictures/Nature/Zen.tif'
+sudo /usr/bin/defaults write /Users/ifss/Library/Preferences/com.apple.desktop Background '{default = {ImageFilePath = "/Library/Desktop Pictures/IFSS_KeyImage_Sec_Logo.jpg"; };}'
+sudo chown 502 /Users/ifss/Library/Preferences/com.apple.desktop.plist
