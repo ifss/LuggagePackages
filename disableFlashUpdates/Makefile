@@ -1,6 +1,6 @@
 # Author: Stephen Murphy
-# Created: March 2012
-# Description: Package to install plist which disables CS5 auto updates
+# Created: April 2012
+# Description: Package to install file which disables Flash auto updates
 # See http://managingosx.wordpress.com/2011/05/13/disabling-auto-update-notifications-for-flash-player-10-3/
 
 include /usr/local/share/luggage/luggage.make

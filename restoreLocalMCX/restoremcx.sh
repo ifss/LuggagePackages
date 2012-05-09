@@ -1,0 +1,1 @@
+sudo installer -pkg /Library/Scripts/IFSS/packages/prefs_LocalMCX-1.0.0.pkg -target /

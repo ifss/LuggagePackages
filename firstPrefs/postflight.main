@@ -41,6 +41,7 @@ $defaults write "${PREFS_DIR}/com.apple.TimeMachine" AutoBackup -boolean false
 #fi
 
 # Set Safari Preferences.
+$defaults write "${USERPREFS_DIR}/com.apple.Safari" LastDisplayedWelcomePageVersionString -string '4.0'
 $defaults write "${USERPREFS_DIR}/com.apple.Safari" HomePage http://www.ifss.edu.au/
 $defaults write "${USERPREFS_DIR}/com.apple.Safari" ShowStatusBar -boolean true
 $defaults write "${USERPREFS_DIR}/com.apple.Safari" ConfirmClosingMultiplePages 0
@@ -95,6 +96,10 @@ if [ "${USER}" != 'default' ]; then
       chown ${USER}:staff "${USERPREFS_DIR}/com.apple.digihub.plist.lockfile"
    fi
 fi
+
+
+# Disable iTunes software update check
+$defaults write "${USERPREFS_DIR}/com.apple.iTunes" disableCheckForUpdates -boolean true
 
 # Disable the Ping sidebar in iTunes
 $defaults write "${USERPREFS_DIR}/com.apple.iTunes" disablePingSidebar -boolean true
@@ -170,6 +175,7 @@ $defaults write "${USERPREFS_DIR}/com.apple.finder" ShowMountedServersOnDesktop 
 $defaults write "${USERPREFS_DIR}/com.apple.finder" ShowRemovableMediaOnDesktop -boolean true
 $defaults write "${USERPREFS_DIR}/com.apple.finder" ShowExternalHardDrivesOnDesktop -boolean true
 $defaults write "${USERPREFS_DIR}/com.apple.finder" ShowHardDrivesOnDesktop -boolean true
+#$defaults write "${USERPREFS_DIR}/com.apple.finder" FXPreferredGroupBy -string 'Kind'
 $PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy kind" "${USERPREFS_DIR}/com.apple.finder.plist"
 
 # Hide iDisk from the sidebar (in case above doesn't work)

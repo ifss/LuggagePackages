@@ -54,6 +54,7 @@ $defaults write "${PREFS_DIR}/com.apple.TimeMachine" AutoBackup -boolean false
 $defaults write "${USERPREFS_DIR}/com.apple.desktop" Background '{default = {ImageFilePath = "/Library/Desktop Pictures/IFSS_KeyImage_Sec_Logo.jpg"; };}'
 
 # Set Safari Preferences.
+$defaults write "${USERPREFS_DIR}/com.apple.Safari" LastDisplayedWelcomePageVersionString -string '4.0'
 $defaults write "${USERPREFS_DIR}/com.apple.Safari" HomePage http://www.ifss.edu.au/
 $defaults write "${USERPREFS_DIR}/com.apple.Safari" ShowStatusBar -boolean true
 $defaults write "${USERPREFS_DIR}/com.apple.Safari" ConfirmClosingMultiplePages 0
@@ -84,6 +85,9 @@ $defaults write "${PREFS_DIR}/com.apple.SoftwareUpdate" AutomaticDownload -boole
 $defaults write "${USERPREFS_DIR}/com.apple.digihub" 'com.apple.digihub.cd.music.appeared' '<dict><key>action</key><integer>1</integer></dict>'
 $defaults write "${USERPREFS_DIR}/com.apple.digihub" 'com.apple.digihub.cd.picture.appeared' '<dict><key>action</key><integer>1</integer></dict>'
 $defaults write "${USERPREFS_DIR}/com.apple.digihub" 'com.apple.digihub.dvd.video.appeared' '<dict><key>action</key><integer>1</integer></dict>'
+
+# Disable iTunes software update check
+$defaults write "${USERPREFS_DIR}/com.apple.iTunes" disableCheckForUpdates -boolean true
 
 # Disable the Ping sidebar in iTunes
 $defaults write "${USERPREFS_DIR}/com.apple.iTunes" disablePingSidebar -boolean true
@@ -117,6 +121,7 @@ $defaults write "${USERPREFS_DIR}/com.apple.finder" ShowMountedServersOnDesktop 
 $defaults write "${USERPREFS_DIR}/com.apple.finder" ShowRemovableMediaOnDesktop -boolean true
 $defaults write "${USERPREFS_DIR}/com.apple.finder" ShowExternalHardDrivesOnDesktop -boolean true
 $defaults write "${USERPREFS_DIR}/com.apple.finder" ShowHardDrivesOnDesktop -boolean true
+#$defaults write "${USERPREFS_DIR}/com.apple.finder" FXPreferredGroupBy -string 'Kind'
 $PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy kind" "${USERPREFS_DIR}/com.apple.finder.plist"
  
 # Set Finder Sidebar Preferences: Show all sidebar icons except back to my mac & bonjour
