@@ -1,0 +1,23 @@
+#!/bin/bash
+#
+
+# Testing logic of script to cycle through the users
+# based on script from github.com/natewalck/LuggagePackages
+# SM May 2012
+
+for USER in $3Users/*
+do
+	if [ "${USER}" != "/Users/Shared" ]
+		then
+			echo $USER > $3$USER/done.txt
+			echo $0 >> $3$USER/done.txt
+			echo $1 >> $3$USER/done.txt
+			echo $2 >> $3$USER/done.txt
+			echo $3 >> $3$USER/done.txt
+			echo $4 >> $3$USER/done.txt
+			#rm $3$USER/okaytodelete
+	fi
+done
+
+# Note that "exit 0" means installer will think script ran successfully, even if there were errors
+# exit 0

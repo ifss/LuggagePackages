@@ -1,0 +1,17 @@
+#!/bin/bash
+#
+
+# Delete plist for existing users
+# based on script from github.com/natewalck/LuggagePackages
+# SM May 2012
+
+for USER in $3Users/*
+do
+	if [ "${USER}" != "/Users/Shared" ]
+		then	
+			sudo rm $3$USER/Library/Preferences/com.apple.quicktime.plugin.preferences.plist
+	fi
+done
+
+# Note - exit 0 will mean it exits successfully, even if there are errors (e.g., not file to rm)
+exit 0

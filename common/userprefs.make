@@ -30,6 +30,16 @@ l_ifss_Library_Preferences: l_ifss_Library
 	@sudo chown 502:20 ${WORK_D}/Users/ifss/Library/Preferences
 	@sudo chmod 700 ${WORK_D}/Users/ifss/Library/Preferences
 
+l_ladmin_Library_AppSupport: l_ladmin_Library
+	@sudo mkdir -p ${WORK_D}/Users/ladmin/Library/Application\ Support
+	@sudo chown 501:20 ${WORK_D}/Users/ladmin/Library/Application\ Support
+	@sudo chmod 700 ${WORK_D}/Users/ladmin/Library/Application\ Support
+
+l_ifss_Library_AppSupport: l_ifss_Library
+	@sudo mkdir -p ${WORK_D}/Users/ifss/Library/Application\ Support
+	@sudo chown 502:20 ${WORK_D}/Users/ifss/Library/Application\ Support
+	@sudo chmod 700 ${WORK_D}/Users/ifss/Library/Application\ Support
+
 
 pack-users-ladmin-Preferences-%: % l_ladmin_Library_Preferences
 	@sudo ${INSTALL} -m 600 -g 20 -o 501 $< ${WORK_D}/Users/ladmin/Library/Preferences

@@ -2,13 +2,15 @@
 
 # from github.com/natewalck/LuggagePackages
 # original version causes plist owner to be set to root
+# also probs with syntax around user
+# (original had: $3/Users/* -- would result in e.g. "//Users/Shared" and Shared user would match conditional
 # fixed by SM April 2012
 
-for user in $3/Users/*
+for USER in $3Users/*
 do
-	if [ "${user}" != "/Users/Shared" ]
+	if [ "${USER}" != "/Users/Shared" ]
 		then	
-			defaults write $3$user/Library/Preferences/com.apple.SetupAssistant DidSeeCloudSetup -bool TRUE
-			chown ${user} $3$user/Library/Preferences/com.apple.SetupAssistant.plist
+			defaults write $3$USER/Library/Preferences/com.apple.SetupAssistant DidSeeCloudSetup -bool TRUE
+			chown ${USER} $3$USER/Library/Preferences/com.apple.SetupAssistant.plist
 	fi
 done
