@@ -4,13 +4,14 @@
 # original version causes plist owner to be set to root
 # also probs with syntax around user
 # (original had: $3/Users/* -- would result in e.g. "//Users/Shared" and Shared user would match conditional
-# fixed by SM April 2012
+# Changed for statment to get name of user folder instead of path to user folder
+# fixed by SM May 2012
 
-for USER in $3Users/*
+for USERDIR in $( ls $3Users )
 do
-	if [ "${USER}" != "/Users/Shared" ]
+	if [ "${USERDIR}" != "Shared" ]
 		then	
-			defaults write $3$USER/Library/Preferences/com.apple.SetupAssistant DidSeeCloudSetup -bool TRUE
-			chown ${USER} $3$USER/Library/Preferences/com.apple.SetupAssistant.plist
+			defaults write $3Users/$USERDIR/Library/Preferences/com.apple.SetupAssistant DidSeeCloudSetup -bool TRUE
+			sudo chown `ls -l $3Users | grep $USERDIR | awk '{print $3}'` $3Users/$USERDIR/Library/Preferences/com.apple.SetupAssistant.plist
 	fi
 done

@@ -3,15 +3,21 @@
 
 # Delete plist for existing users
 # based on script from github.com/natewalck/LuggagePackages
+# Changed for statement to just get username to handle paths better
 # SM May 2012
 
-for USER in $3Users/*
+PFILE=com.apple.quicktime.plugin.preferences.plist
+
+for USERDIR in $( ls $3Users )
 do
-	if [ "${USER}" != "/Users/Shared" ]
-		then	
-			sudo rm $3$USER/Library/Preferences/com.apple.quicktime.plugin.preferences.plist
+	if [ "${USERDIR}" != "Shared" ]
+	then
+		if [ -e "$3Users/$USERDIR/Library/Preferences/$PFILE" ]       # Check if plist file exists.
+  		then
+			sudo rm $3Users/$USERDIR/Library/Preferences/$PFILE
+		fi
 	fi
 done
 
-# Note - exit 0 will mean it exits successfully, even if there are errors (e.g., not file to rm)
-exit 0
+# Note - exit 0 will mean it exits successfully even if there are errors, and install will complete
+#exit 0

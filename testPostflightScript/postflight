@@ -5,17 +5,28 @@
 # based on script from github.com/natewalck/LuggagePackages
 # SM May 2012
 
-for USER in $3Users/*
+#USERLIST=`ls $3Users`
+#for USERDIR in $USERLIST
+
+OUTFILE=done3.txt
+
+for USERDIR in $( ls $3Users )
 do
-	if [ "${USER}" != "/Users/Shared" ]
+	if [ "${USERDIR}" != "Shared" ]
 		then
-			echo $USER > $3$USER/done.txt
-			echo $0 >> $3$USER/done.txt
-			echo $1 >> $3$USER/done.txt
-			echo $2 >> $3$USER/done.txt
-			echo $3 >> $3$USER/done.txt
-			echo $4 >> $3$USER/done.txt
-			#rm $3$USER/okaytodelete
+			echo $USERDIR > $3Users/$USERDIR/$OUTFILE
+			echo $3Users >> $3Users/$USERDIR/$OUTFILE
+			echo $3/Users >> $3Users/$USERDIR/$OUTFILE
+			echo $3Users/$USERDIR >> $3Users/$USERDIR/$OUTFILE
+			echo $3Users/$USERDIR/$OUTFILE >> $3Users/$USERDIR/$OUTFILE
+			echo $0 >> $3Users/$USERDIR/$OUTFILE
+			echo $1 >> $3Users/$USERDIR/$OUTFILE
+			echo $2 >> $3Users/$USERDIR/$OUTFILE
+			echo $3 >> $3Users/$USERDIR/$OUTFILE
+			echo $4 >> $3Users/$USERDIR/$OUTFILE
+			echo `ls -l $3Users | grep $USERDIR | awk '{print $3}'` >> $3Users/$USERDIR/$OUTFILE
+			sudo chown `ls -l $3Users | grep $USERDIR | awk '{print $3}'` $3Users/$USERDIR/$OUTFILE
+			#rm $3Users/$USERDIR/okaytodelete
 	fi
 done
 
