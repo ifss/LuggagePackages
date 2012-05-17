@@ -33,7 +33,7 @@
 	<key>sssd_library_path</key>
 	<string>Lab1/Library</string>
 	<key>sssd_off</key>
-	<integer>0</integer>
+	<integer>1</integer>
 	<key>sssd_passwd</key>
 	<string></string>
 	<key>sssd_pkg_path</key>
