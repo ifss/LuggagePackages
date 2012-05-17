@@ -1,0 +1,11 @@
+#!/bin/bash
+#
+
+# Remove existing IFSS Logos folder ready for install of current logos
+# SM May 2012
+
+
+if [ -d "/IFSS Stock Media/Video/IFSS Logos" ]       # Check if folder exists
+then
+	sudo rm -rf "/IFSS Stock Media/Video/IFSS Logos"
+fi

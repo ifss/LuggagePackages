@@ -1,0 +1,32 @@
+#!/bin/bash
+#
+
+# Remove existing Pro Tools demos and exercises ready for install of clean sessions
+# Template - needs exact user name to be specified
+# SM May 2012
+
+SAVEIFS=$IFS
+IFS=$(echo -en "\n\b")
+
+SESSIONS="101 Exercise 1M
+101 Exercise 1P
+101 Exercise 3M
+101 Exercise 4
+101 Exercise 6
+Audrye Sessions - Turn Me Off
+Post Hands-On Project
+PT Exercise 1
+PT Exercise 2"
+
+for FOLDER in $SESSIONS
+do
+	if [ -d "/Users/ifss/Documents/Pro Tools Sessions/${FOLDER}" ]       # Check if folder exists.
+ 	then
+		sudo rm -rf "/Users/ifss/Documents/Pro Tools Sessions/${FOLDER}"
+	fi
+done
+
+IFS=$SAVEIFS
+
+# Note - exit 0 will mean it exits successfully even if there are errors, and install will complete
+#exit 0
