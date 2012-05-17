@@ -11,19 +11,10 @@ PACKAGE_VERSION=1.0.0
 PAYLOAD=\
 		pack-user-template-plist-com.google.sketchupfree8.plist\
 		pack-users-ladmin-Preferences-com.google.sketchupfree8.plist\
-		pack-users-ifss-Preferences-com.google.sketchupfree8.plist
-
-#		unbz2-User_Template-AppSupport-Google_SketchUp_8.tar.bz2\
-#		unbz2-users-ladmin-AppSupport-Google_SketchUp_8.tar.bz2\
-#		unbz2-users-ifss-AppSupport-Google_SketchUp_8.tar.bz2\
-
-#		pack-user-template-Cookies-Cookies.plist\
-#		pack-users-ladmin-Cookies-Cookies.plist\
-#		pack-users-ifss-Cookies-Cookies.plist
-
-#		pack-users-ladmin-.aawxtrun\
-#		pack-users-ifss-.aawxtrun\
-#		pack-user-template-.aawxtrun\
+		pack-users-ifss-Preferences-com.google.sketchupfree8.plist\
+		unbz2-User_Template-AppSupport-Google_SketchUp_8.tar.bz2\
+		unbz2-users-ladmin-AppSupport-Google_SketchUp_8.tar.bz2\
+		unbz2-users-ifss-AppSupport-Google_SketchUp_8.tar.bz2
 
 
 l_System_Library_User_Template_Library_AppSupport: l_System_Library_User_Template_Library
@@ -47,7 +38,7 @@ l_ifss_Library_Cookies: l_ifss_Library
 	@sudo chmod 755 ${WORK_D}/Users/ifss/Library/Cookies
 
 
-
+# These rules no longer needed, but left here for reference or future use
 pack-users-ladmin-%: % l_Users_ladmin
 	@sudo ${INSTALL} -m 644 -g 20 -o 501 $< ${WORK_D}/Users/ladmin
 
