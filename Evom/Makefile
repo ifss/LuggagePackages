@@ -5,7 +5,7 @@
 include /usr/local/share/luggage/luggage.make
 include ../common/userprefs.make
 
-TITLE=Evom_0-99_Install
+TITLE=Evom_1-0-1_Install
 PACKAGE_VERSION=1.0.0
 REVERSE_DOMAIN=au.edu.ifss
 PAYLOAD=\

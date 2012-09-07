@@ -1,0 +1,77 @@
+#!/bin/sh
+
+# Clean out remaining files, folders etc left behind after uninstalling Avid MC 5.3
+# Doesn't touch anything in Users/Shared
+
+rm -rf "/Applications/Avid_Uninstallers"
+rm -rf "/Applications/Avid Media Composer"
+rm -rf "/Library/Application Support/Avid/Pixie"
+rm -rf "/Library/Application Support/Avid/SWL"
+
+# Remove PACE/ilok files
+
+rm "/Library/Application Support/._PACE Anti-Piracy"
+rm -rf "/Library/Application Support/PACE Anti-Piracy"
+rm "/Library/LaunchDaemons/._PACESupport.plist"
+rm "/Library/LaunchDaemons/PACESupport.plist"
+rm -rf "/Library/StartupItems/PACESupport"
+rm "/System/Library/CFMSupport/._InterLok® Engine"
+rm "/System/Library/CFMSupport/InterLok® Engine"
+rm "/System/Library/Extensions/._PACESupport.kext"
+rm "/System/Library/Extensions/._PACESupport2.kext"
+rm "/System/Library/Extensions/._PACESupportFamily.kext"
+rm -rf "/System/Library/Extensions/PACESupport.kext"
+rm -rf "/System/Library/Extensions/PACESupport2.kext"
+rm -rf "/System/Library/Extensions/PACESupportFamily.kext"
+rm "/usr/local/bin/._paceit"
+rm "/usr/local/bin/paceit"
+
+# Remove any installed AMA plugins
+rm -rf "/Library/Application Support/Avid/AVX2_Plug-ins"
+# Completely remove Avid App Support folder
+rm -rf "/Library/Application Support/Avid"
+
+if [ -f "/Library/LaunchDaemons/com.avid.AMCUninstaller.plist" ] ; then
+   rm "/Library/LaunchDaemons/com.avid.AMCUninstaller.plist"
+fi
+
+if [ -f "/Library/Logs/com.avid.AMCUninstaller.log" ] ; then
+   rm "/Library/Logs/com.avid.AMCUninstaller.log"
+fi
+
+if [ -f "/Library/PrivilegedHelperTools/com.avid.AMCUninstaller" ] ; then
+   rm "/Library/PrivilegedHelperTools/com.avid.AMCUninstaller"
+fi
+
+if [ -f "/private/var/run/com.avid.AMCUninstaller.socket" ] ; then
+   rm "/private/var/run/com.avid.AMCUninstaller.socket"
+fi
+
+for USERDIR in $( ls $3Users )
+do
+	if [ "${USERDIR}" != "Shared" -a "${USERDIR}" != ".localized" ];then
+		if [ -f "/Users/$USERDIR/Library/Preferences/com.avid.mediacomposer.plist" ] ; then
+   			rm "/Users/$USERDIR/Library/Preferences/com.avid.mediacomposer.plist"
+		fi
+	fi
+done
+
+# Will reinstall these, so don't want "upgrade"
+pkgutil --forget com.avid.avidAmaPluginForMxf.MSP_MXF32.pkg
+pkgutil --forget com.avid.avidAmaPluginForMXF.MSP_MXF.pkg
+pkgutil --forget com.avid.avidAmaPluginForRed.MVP_MSP_REDR3D32.pkg
+pkgutil --forget com.avid.avidAmaPluginForRed.MVP_MSP_REDR3D.pkg
+pkgutil --forget sony.com.pdzkma2pluginv10.MSP_SonyXDCAMEXMP4.pkg
+pkgutil --forget sony.com.pdzkma2pluginv10.MVP_SonyXDCAMEX.pkg
+pkgutil --forget sony.com.pdzkma2pluginv10.SonyXDCAM.pkg
+pkgutil --forget com.avid.startupmedia
+pkgutil --forget com.avid.startupproject.projectfiles.mca
+pkgutil --forget com.paceap.pkg.InterLokExtensions
+
+
+exit 0
+
+
+
+
+

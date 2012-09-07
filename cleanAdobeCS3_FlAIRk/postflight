@@ -1,0 +1,61 @@
+#!/bin/sh
+
+# Delete Flash/AIR/kuler and remaining CS3 files and folders left behind by uninstaller and cleanup utility
+
+rm -rf "/Applications/Adobe kuler.app"
+
+rm -rf "/Applications/Adobe"
+rm -rf "/Applications/Adobe After Effects CS3"
+rm -rf "/Applications/Adobe Encore CS3"
+rm -rf "/Applications/Adobe Flash CS3"
+rm -rf "/Applications/Adobe Illustrator CS3"
+rm -rf "/Applications/Adobe Premiere Pro CS3"
+rm -rf "/Applications/Adobe Soundbooth CS3"
+
+rm -rf "/Applications/Utilities/Adobe Installers"
+rm -rf "/Applications/Utilities/Adobe Utilities.localized"
+rm -rf "/Applications/Utilities/Adobe AIR Application Installer.app"
+rm -rf "/Applications/Utilities/Adobe AIR Uninstaller.app"
+
+rm -rf "/Library/Application Support/Adobe"
+rm -rf "/Library/Application Support/FLEXnet Publisher"
+
+rm -rf "/Library/Preferences/FLEXnet Publisher"
+rm "/Library/Preferences/com.adobe.PDFAdminSettings.plist"
+rm "/Library/Preferences/FLEXnet Publisher/FLEXnet/adobe_00080000_tsf.data"
+
+rm -rf "/Library/Frameworks/Adobe AIR.framework"
+rm -rf "/Library/Internet Plug-Ins/Flash Player.plugin"
+rm "/Library/Internet Plug-Ins/flashplayer.xpt"
+
+
+defaultprofile="/System/Library/User Template/English.lproj"
+
+rm -rf "$defaultprofile""/Library/Application Support/Adobe"
+rm -rf "$defaultprofile""/Library/Preferences/Adobe"
+rm -rf "$defaultprofile""/Library/Preferences/Macromedia"
+rm -rf "$defaultprofile""/Library/ColorSync/Profiles"
+
+
+for USERDIR in $( ls $3Users )
+do
+	if [ "${USERDIR}" != "Shared" -a "${USERDIR}" != ".localized" ];then
+		rm -rf "/Users/$USERDIR/Library/Application Support/Adobe"
+		rm -rf "/Users/$USERDIR/Library/Preferences/Adobe"
+		rm -rf "/Users/$USERDIR/Library/Preferences/Macromedia"
+		rm "/Users/$USERDIR/Library/Preferences/Adobe Photoshop CS3 Paths"
+		rm "/Users/$USERDIR/Library/Preferences/Adobe Save For Web AI 12.0 Prefs"
+	fi
+done
+
+# Clear receipts - new versions will be standard Adobe installs, not custom pkgs
+
+pkgutil --forget au.edu.ifss.package.CS3base
+pkgutil --forget au.edu.ifss.package.cs3update
+pkgutil --forget au.edu.ifss.package.cs3update2
+pkgutil --forget au.edu.ifss.package.adobeair271
+pkgutil --forget au.edu.ifss.package.kuler
+pkgutil --forget au.edu.ifss.package.flash11
+pkgutil --forget au.edu.ifss.setdockcs3.com.apple.dock.pkg
+
+exit 0

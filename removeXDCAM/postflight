@@ -1,0 +1,101 @@
+#!/bin/sh
+
+# Delete old XDCAM Browser and Transfer apps, drivers, and custom scripts etc.
+
+# Quit the apps if running
+
+osascript -e 'tell application "XDCAM Transfer" to quit'
+osascript -e 'tell application "XDCAM EX Clip Browser" to quit'
+
+sleep 4
+
+rm -rf "/Applications/XDCAM Transfer.app"
+
+# Typical install
+rm -rf "/Applications/Utilities/FAM Driver Tool.app"
+
+# In current lab 2 build
+
+rm -rf "/Applications/Utilities/FAM Driver Tool_10.4.app"
+rm -rf "/Applications/Utilities/FAM Driver Tool_10.5.app"
+rm -rf "/Applications/Utilities/FAM Driver Tool_10.6.app"
+
+rm -rf "/Library/Application Support/Final Cut Pro System Support/Plugins/SonyExportPlugin.bundle"
+rm -rf "/Library/Application Support/Final Cut Pro System Support/Plugins/SonyImportPlugin.bundle"
+
+# Note: leaving the custom settings in place, assuming they are still relevant or will get over-written
+# Also because receipts database lists slightly different files (and less) than in Custom Settings folder
+#/Library/Application Support/Final Cut Pro System Support/Custom Settings
+
+
+rm -rf "/System/Library/Extensions/FAMProtocol.kext"
+rm -rf "/System/Library/Extensions/prodisc_fs.kext"
+rm -rf "/System/Library/Filesystems/prodisc.fs"
+rm -rf "/sbin/mount_prodiscfs"
+
+
+# Installed by XDCAM Drive
+
+rm -rf "/Applications/U1 Utility"
+rm -rf "/System/Library/Extensions/SONY_PDW-U1.kext"
+rm -rf "/System/Library/Extensions/pdudf.kext"
+rm -rf "/System/Library/Filesystems/pdudf.fs"
+rm -rf "/sbin/mount_pdudf"
+
+
+# Only app and readmes installed by ClipBrowser.pkg, in own folder
+
+rm -rf "/Applications/XDCAM EX Clip Browser"
+
+
+# User files created after first runs
+
+for USERDIR in $( ls $3Users )
+do
+	if [ "${USERDIR}" != "Shared" -a "${USERDIR}" != ".localized" ];then
+		rm -rf "/Users/$USERDIR/Library/Application Support/Sony XDCAM Transfer"
+		rm -rf "/Users/$USERDIR/Movies/Sony XDCAM Transfer"
+		rm "/Users/$USERDIR/Library/Preferences/com.sony.bprl.xdcamtransfer.plist"
+		rm "/Users/$USERDIR/Library/Preferences/jp.co.sony.ClipBrowser.plist"
+	fi
+done
+
+
+# remove/cleanup IFSS fixFAMdriver.pkg scripts etc.
+
+rm "/Library/LaunchDaemons/._au.edu.ifss.setupfam.plist"
+rm "/Library/LaunchDaemons/au.edu.ifss.setupfam.plist"
+rm "/Library/Scripts/IFSS/._FAMdriver.scpt"
+rm "/Library/Scripts/IFSS/FAMdriver.scpt"
+rm "/Library/Scripts/IFSS/._runsetupfam.sh"
+rm "/Library/Scripts/IFSS/runsetupfam.sh"
+rm "/Library/Scripts/IFSS/.au.edu.ifss.SetupFAMdriver.done"
+# Could be either of these depending on build
+if [ -d "/Library/Scripts/IFSS/packages/famdriver.pkg" ] ; then
+   	rm -rf "/Library/Scripts/IFSS/packages/famdriver.pkg"
+fi
+if [ -d "/Library/Scripts/IFSS/packages/FAM Installer.pkg" ] ; then
+   	rm -rf "/Library/Scripts/IFSS/packages/FAM Installer.pkg"
+fi
+
+# Clear receipts to avoid any "upgrade" issues when installing new version
+
+pkgutil --forget com.sony.FAMdriverInstaller
+pkgutil --forget com.sony.FDTInstaller
+pkgutil --forget com.sony.filesystems.vfam
+
+pkgutil --forget com.sony.bprl.xdcamtransfer
+pkgutil --forget com.sony.bprl.xdcamtransfer.plugins
+pkgutil --forget com.sony.bprl.xdcamtransfer.presets
+
+pkgutil --forget jp.co.sony.ClipBrowser
+
+# After standard FAM installer -- not in current lab 2 build
+pkgutil --forget com.sony.famInstaller.FAM_Driver.pkg
+pkgutil --forget com.sony.famInstaller.FAM_Driver_Tool.pkg
+
+# From IFSS fixFAMdriver.pkg
+pkgutil --forget au.edu.ifss.fixFAMdriver.au.edu.ifss.setupfam.pkg
+pkgutil --forget au.edu.ifss.fixFAMdriver.scripts.pkg
+
+exit 0

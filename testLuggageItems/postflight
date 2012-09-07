@@ -1,0 +1,9 @@
+#!/bin/bash
+#
+
+# Script that does nothing
+# Purely for experimenting with packaging
+# SM May 2012
+
+# Note that "exit 0" means installer will think script ran successfully, even if there were errors
+exit 0

@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# Delete old 5DtoRGB (non-MAS beta version) and preferences
+
+# Quit the app if running
+
+osascript -e 'tell application "5DtoRGB" to quit'
+
+sleep 2
+
+rm -rf "/Applications/5DtoRGB.app"
+
+# Pref file created after first runs
+
+for USERDIR in $( ls $3Users )
+do
+	if [ "${USERDIR}" != "Shared" -a "${USERDIR}" != ".localized" ];then
+		rm "/Users/$USERDIR/Library/Preferences/com.rarevision.-DtoRGB.plist"
+		rm "/Users/$USERDIR/5dtorgb.conf"
+	fi
+done
+
+exit 0

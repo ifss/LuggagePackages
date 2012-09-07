@@ -1,0 +1,55 @@
+#!/bin/sh
+
+# Delete old XDCAM Browser and Transfer apps, drivers, and custom scripts etc.
+
+# Quit the apps if running
+
+osascript -e 'tell application "Keynote" to quit'
+osascript -e 'tell application "Numbers" to quit'
+osascript -e 'tell application "Pages" to quit'
+
+sleep 5
+
+rm -rf "/Applications/iWork '08"
+rm -rf "/Library/Application Support/iWork '08"
+
+rm -rf "/Library/Preferences/com.apple.iWork08.Installer.plist"
+
+# License file
+rm -rf "/Library/Preferences/com.apple.iWork08.plist"
+
+rm -rf "/Library/Spotlight/iWork.mdimporter"
+rm -rf "/Library/Spotlight/Keynote.mdimporter"
+rm -rf "/Library/Spotlight/Numbers.mdimporter"
+rm -rf "/Library/Spotlight/Pages.mdimporter"
+
+defaultprofile="/System/Library/User Template/English.lproj"
+
+rm -rf "$defaultprofile""/Library/Preferences/com.apple.iWork.Keynote.plist"
+rm -rf "$defaultprofile""/Library/Preferences/com.apple.iWork.Numbers.plist"
+rm -rf "$defaultprofile""/Library/Preferences/com.apple.iWork.Pages.plist"
+
+
+for USERDIR in $( ls $3Users )
+do
+	if [ "${USERDIR}" != "Shared" -a "${USERDIR}" != ".localized" ];then
+		rm -rf "/Users/$USERDIR/Library/Caches/com.apple.iWork.Fonts"
+		rm -rf "/Users/$USERDIR/Library/Caches/com.apple.iWork.Keynote"
+		rm -rf "/Users/$USERDIR/Library/Caches/com.apple.iWork.Numbers"
+		rm -rf "/Users/$USERDIR/Library/Caches/com.apple.iWork.Pages"
+		rm -rf "/Users/$USERDIR/Library/Preferences/com.apple.iWork.Keynote.plist"
+		rm -rf "/Users/$USERDIR/Library/Preferences/com.apple.iWork.Numbers.plist"
+		rm -rf "/Users/$USERDIR/Library/Preferences/com.apple.iWork.Pages.plist"
+	fi
+done
+
+# Clear receipts to avoid any "upgrade" issues when installing new versions
+
+pkgutil --forget com.apple.pkg.iWork08
+pkgutil --forget com.apple.pkg.Keynote_404
+pkgutil --forget com.apple.pkg.Numbers_103
+pkgutil --forget com.apple.pkg.Pages_303
+pkgutil --forget au.edu.ifss.iworklicense.com.apple.iWork08.pkg
+pkgutil --forget au.edu.ifss.iworkprefs.Preferences.pkg
+
+exit 0
