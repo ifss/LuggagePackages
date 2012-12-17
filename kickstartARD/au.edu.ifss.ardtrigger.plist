@@ -3,18 +3,16 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>au.edu.ifss.kickstart</string>
+	<string>au.edu.ifss.ardtrigger</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/Library/Scripts/IFSS/kickstart.sh</string>
+		<string>/Library/Scripts/IFSS/ardtrigger.sh</string>
 	</array>
 	<key>QueueDirectories</key>
 	<array/>
 	<key>RunAtLoad</key>
-	<false/>
+	<true/>
 	<key>WatchPaths</key>
-	<array>
-		<string>/Library/Scripts/IFSS/trigger/ardtrigger</string>
-	</array>
+	<array/>
 </dict>
 </plist>

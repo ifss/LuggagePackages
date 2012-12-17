@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ###
 # Script that is used along with a launchd item to kickstart ARD for access by ladmin user
 ###

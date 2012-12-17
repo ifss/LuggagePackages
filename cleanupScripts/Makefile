@@ -13,6 +13,7 @@ REVERSE_DOMAIN=au.edu.ifss
 PAYLOAD=\
 		unbz2-application-IFSS_Maintenance.app\
 		unbz2-application-IFSS_Open_Day_Cleanup.app\
+		unbz2-application-IFSS_Open_Day_Setup.app\
 		unbz2-application-IFSS_Reset_Screensaver.app\
 		pack-Library-Scripts-IFSS-resetenergysaver.sh\
 		pack-Library-Scripts-IFSS-cleanupRoutinesLibrary.scpt
@@ -39,6 +40,10 @@ unbz2-application-IFSS_Maintenance.app: IFSS_Maintenance.app.tar.bz2 l_Applicati
 unbz2-application-IFSS_Open_Day_Cleanup.app: IFSS_Open_Day_Cleanup.app.tar.bz2 l_Applications
 	@SUDO ${TAR} xjf IFSS_Open_Day_Cleanup.app.tar.bz2 -C ${WORK_D}/Applications
 	@SUDO chown -R root:admin "${WORK_D}/Applications/IFSS Open Day Cleanup.app"
+
+unbz2-application-IFSS_Open_Day_Setup.app: IFSS_Open_Day_Setup.app.tar.bz2 l_Applications
+	@SUDO ${TAR} xjf IFSS_Open_Day_Setup.app.tar.bz2 -C ${WORK_D}/Applications
+	@SUDO chown -R root:admin "${WORK_D}/Applications/IFSS Open Day Setup.app"
 
 unbz2-application-IFSS_Reset_Screensaver.app: IFSS_Reset_Screensaver.app.tar.bz2 l_Applications
 	@SUDO ${TAR} xjf IFSS_Reset_Screensaver.app.tar.bz2 -C ${WORK_D}/Applications

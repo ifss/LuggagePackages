@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Delete the Policy Banner doc (for quicker restart)
+
+if [ -d "/Library/Security/PolicyBanner.rtfd" ]       # rtfd is a folder (bundle)
+ 	then
+		sudo rm -rf "/Library/Security/PolicyBanner.rtfd"
+	fi
+
+exit 0

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Set the preference key
+
+sudo /usr/bin/defaults write /Library/Preferences/com.apple.loginwindow autoLoginUser ifss

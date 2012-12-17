@@ -1,0 +1,18 @@
+#!/bin/bash
+#
+
+# Remove a bunch of existing Apple Scripts (no longer needed or to be replaced/reinstalled)
+# SM Nov 2012
+
+sudo rm -rf "/Library/Scripts/IFSS/addCleanup.scpt"
+sudo rm -rf "/Library/Scripts/IFSS/big_cleanup.scpt"
+sudo rm -rf "/Library/Scripts/IFSS/cleanup.scpt"
+sudo rm -rf "/Library/Scripts/IFSS/clearDeletionWarning.scpt"
+sudo rm -rf "/Library/Scripts/IFSS/enableAssistiveDevs.scpt"
+sudo rm -rf "/Library/Scripts/IFSS/ifssMaintenance.scpt"
+sudo rm -rf "/Library/Scripts/IFSS/openDayCleanup.scpt"
+sudo rm -rf "/Library/Scripts/IFSS/resetAfterOpenDay.scpt"
+sudo rm -rf "/Library/Scripts/IFSS/setDeletionWarning.scpt"
+sudo rm -rf "/Library/Scripts/IFSS/setDesktopWarning.scpt"
+
+

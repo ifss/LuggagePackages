@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Remove the preference key
+sudo /usr/bin/defaults delete /Library/Preferences/com.apple.loginwindow autoLoginUser
+
+# Delete the encrypted password file
+
+if [ -f "/private/etc/kcpassword" ]       # check it exists
+ 	then
+		sudo rm "/private/etc/kcpassword"
+	fi
+
+exit 0

@@ -12,6 +12,7 @@ PAYLOAD=\
 	pack-user-picture-IFSS_KeyImage_Sec_Logo.jpg\
 	pack-user-picture-IFSS_KeyImage_Sec_Logo-Deletion_Warning.jpg\
 	pack-user-picture-IFSS_KeyImage_Sec_Logo-Rendering.jpg\
+	pack-user-picture-IFSS_KeyImage_Sec_Logo-In_Use.jpg\
 	pack-ifss-picture-ifss.tiff\
 	pack-script-postflight
 
